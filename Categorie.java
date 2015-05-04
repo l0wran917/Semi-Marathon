@@ -6,7 +6,7 @@ public class Categorie {
 	
 	
 	private ArrayList<Coureur> coureurs; 
-	private int nbCoureurs;
+	
 	
 	
 	
