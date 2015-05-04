@@ -1,6 +1,8 @@
 
 public class Partenaire {
 	
+	
+	
 	Partenaire()
 	{
 		
