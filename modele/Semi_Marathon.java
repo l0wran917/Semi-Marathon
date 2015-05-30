@@ -4,6 +4,8 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JFrame;
+
 public class Semi_Marathon {
 	
 	private String ville;
@@ -52,6 +54,15 @@ public class Semi_Marathon {
 		
 	}
 	
+	public static void main(String args[])
+	{
+		JFrame fenetre = new JFrame("Semi Marathon");
+		fenetre.setSize(800, 600);
+		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		fenetre.setVisible(true);
+	}
 	
 	
 }
