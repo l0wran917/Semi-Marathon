@@ -6,6 +6,8 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
+import vue.VuePartenaires;
+
 public class Semi_Marathon {
 	
 	private String ville;
@@ -51,7 +53,9 @@ public class Semi_Marathon {
 		horairesRemiseDossard[1] = new String("7/03 10-19");
 		horairesRemiseDossard[2] = new String("8/03 7-9");
 		
-		
+		partenaires = new ArrayList<Partenaire>();
+		for(int i=1; i < 4; i++) // Ajout de partenaires pour test
+			partenaires.add(new Partenaire("Partenaire " + Integer.toString(i), "Mail " + Integer.toString(i)));
 	}
 	
 	public static void main(String args[])
@@ -60,9 +64,14 @@ public class Semi_Marathon {
 		fenetre.setSize(800, 600);
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		Semi_Marathon semiMarathon = new Semi_Marathon();
+		fenetre.add(new VuePartenaires(semiMarathon.getPartenaires()));	
 		
 		fenetre.setVisible(true);
 	}
+	
+	public ArrayList<Partenaire> getPartenaires()
+	{ return partenaires; }
 	
 	
 }
