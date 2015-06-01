@@ -9,7 +9,7 @@ public class Coureur {
 	private String nom;
 	private String prenom;
 	private char sexe;
-	private int anneeNaissance; // penser à ajouter jour et mois
+	private int anneeNaissance; // penser ï¿½ ajouter jour et mois
 	// Categorie
 	private String adresse;
 	private int codePostal;
@@ -38,7 +38,13 @@ public class Coureur {
 	private Ecole_Entreprise institutions; // 0..1
 	private TypeDossard typeDossard;
 	
-	public String getNumDossard() 
+	public Coureur(String nom, String prenom, int numDossard){
+		this.nom = nom;
+		this.prenom = prenom;
+		this.numDossard = numDossard;
+	}
+	
+	public int getNumDossard() 
 	{ return numDossard; }
 	
 	public String getNom() 
@@ -47,7 +53,7 @@ public class Coureur {
 	public String getPrenom() 
 	{ return prenom; }
 	
-	public String getAnneeNaissance() 
+	public int getAnneeNaissance() 
 	{ return anneeNaissance; }
 }
 

@@ -6,7 +6,7 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
-import vue.VuePartenaires;
+import vue.VueInscrits;
 
 public class Semi_Marathon {
 	
@@ -56,6 +56,11 @@ public class Semi_Marathon {
 		partenaires = new ArrayList<Partenaire>();
 		for(int i=1; i < 4; i++) // Ajout de partenaires pour test
 			partenaires.add(new Partenaire("Partenaire " + Integer.toString(i), "Mail " + Integer.toString(i)));
+	
+		coureurs = new ArrayList<Coureur>();
+		for(int i=1; i < 2; i++) // Ajout de partenaires pour test
+			coureurs.add(new Coureur("Nom", "Prenom", 1));
+	
 	}
 	
 	public static void main(String args[])
@@ -65,13 +70,16 @@ public class Semi_Marathon {
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Semi_Marathon semiMarathon = new Semi_Marathon();
-		fenetre.add(new VuePartenaires(semiMarathon.getPartenaires()));	
+		fenetre.add(new VueInscrits(semiMarathon.getCoureur()));	
 		
 		fenetre.setVisible(true);
 	}
 	
 	public ArrayList<Partenaire> getPartenaires()
 	{ return partenaires; }
+	
+	public ArrayList<Coureur> getCoureur()
+	{ return coureurs; }
 	
 	
 }

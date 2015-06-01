@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import modele.Partenaire;
+import modele.Coureur;
 
 @SuppressWarnings("serial") // Evite un warning
 public class VueInscrits extends JPanel{
 	
-	private ArrayList<Jlabel> lblInscrits;
+	private ArrayList<JLabel> lblInscrits;
 	
 	public VueInscrits(ArrayList<Coureur> inscrits)
 	{
@@ -22,7 +22,7 @@ public class VueInscrits extends JPanel{
 		
 		for(Coureur coureur : inscrits)
 		{
-			String texteAffiche = coureur.getNumDossard() + " : " + coureur.getNom() + " " + coureur.getPrenom() + " " + coureur.getAnneeNaissance() 
+			String texteAffiche = coureur.getNumDossard() + " : " + coureur.getNom() + " " + coureur.getPrenom() + " " + coureur.getAnneeNaissance() ;
 			
 			// Stock les labels s'il y a besoin de les modifier
 			lblInscrits.add(new JLabel(texteAffiche));
