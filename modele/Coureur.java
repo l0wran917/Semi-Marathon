@@ -9,7 +9,7 @@ public class Coureur {
 	private String nom;
 	private String prenom;
 	private char sexe;
-	private int anneeNaissance;
+	private int anneeNaissance; // penser à ajouter jour et mois
 	// Categorie
 	private String adresse;
 	private int codePostal;
@@ -38,4 +38,19 @@ public class Coureur {
 	private Ecole_Entreprise institutions; // 0..1
 	private TypeDossard typeDossard;
 	
+	public String getNumDossard() 
+	{ return numDossard; }
+	
+	public String getNom() 
+	{ return nom; }
+	
+	public String getPrenom() 
+	{ return prenom; }
+	
+	public String getAnneeNaissance() 
+	{ return anneeNaissance; }
 }
+
+
+
+
