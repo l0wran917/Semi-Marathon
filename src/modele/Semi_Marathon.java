@@ -53,13 +53,18 @@ public class Semi_Marathon {
 		horairesRemiseDossard[1] = new String("7/03 10-19");
 		horairesRemiseDossard[2] = new String("8/03 7-9");
 		
+		
 		partenaires = new ArrayList<Partenaire>();
 		for(int i=1; i < 4; i++) // Ajout de partenaires pour test
 			partenaires.add(new Partenaire("Partenaire " + Integer.toString(i), "Mail " + Integer.toString(i)));
 	
 		coureurs = new ArrayList<Coureur>();
-		for(int i=1; i < 2; i++) // Ajout de partenaires pour test
+		for(int i=1; i < 5; i++) // Ajout de partenaires pour test
 			coureurs.add(new Coureur("Nom", "Prenom", 1));
+		
+		rues = new ArrayList<Rue>();
+		for(int i=1; i < 5; i++) // Ajout de rues pour test
+			rues.add(new Rue("Rue du terter", i));
 	
 	}
 	
@@ -70,7 +75,7 @@ public class Semi_Marathon {
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Semi_Marathon semiMarathon = new Semi_Marathon();
-		fenetre.add(new VueInscrits(semiMarathon.getCoureur()));	
+		fenetre.add(new VuePrecisionParcours(semiMarathon.getRues()));	
 		
 		fenetre.setVisible(true);
 	}
@@ -80,6 +85,9 @@ public class Semi_Marathon {
 	
 	public ArrayList<Coureur> getCoureur()
 	{ return coureurs; }
+	
+	public ArrayList<Rue> getRues()
+	{ return rues; }
 	
 	
 }
