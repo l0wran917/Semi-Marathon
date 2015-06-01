@@ -1,4 +1,4 @@
-package modele;
+package src.modele;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
-import vue.VueInscrits;
+import src.vue.VueInscriptionPDF;
 
 public class Semi_Marathon {
 	
@@ -35,8 +35,15 @@ public class Semi_Marathon {
 	
 	private final int NB_HORAIRE_REMISE_DOSSARDS = 3;
 	
+	private JFrame fenetre;
+	
 	public Semi_Marathon()
 	{
+		
+		fenetre = new JFrame("Semi Marathon");
+		fenetre.setSize(800, 600);
+		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
 		ville = "Paris";
 		date = new Date(2015, 3, 8); // 8 Mars 2015
 		longueur = 21.1f;
@@ -61,25 +68,25 @@ public class Semi_Marathon {
 		for(int i=1; i < 2; i++) // Ajout de partenaires pour test
 			coureurs.add(new Coureur("Nom", "Prenom", 1));
 	
-	}
-	
-	public static void main(String args[])
-	{
-		JFrame fenetre = new JFrame("Semi Marathon");
-		fenetre.setSize(800, 600);
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		Semi_Marathon semiMarathon = new Semi_Marathon();
-		fenetre.add(new VueInscrits(semiMarathon.getCoureur()));	
+		fenetre.add(new VueInscriptionPDF(this));	
 		
 		fenetre.setVisible(true);
 	}
 	
+	public static void main(String args[])
+	{
+		Semi_Marathon semiMarathon = new Semi_Marathon();
+	}
+
 	public ArrayList<Partenaire> getPartenaires()
 	{ return partenaires; }
 	
 	public ArrayList<Coureur> getCoureur()
 	{ return coureurs; }
+	
+	public void refresh()
+	{ fenetre.repaint(); fenetre.setVisible(true);}
 	
 	
 }
