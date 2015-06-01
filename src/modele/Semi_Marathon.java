@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.swing.JFrame;
 
 import vue.VueInscrits;
+import vue.VuePrecisionsParcours;
 
 public class Semi_Marathon {
 	
@@ -75,7 +76,7 @@ public class Semi_Marathon {
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Semi_Marathon semiMarathon = new Semi_Marathon();
-		fenetre.add(new VuePrecisionParcours(semiMarathon.getRues()));	
+		fenetre.add(new VuePrecisionsParcours(semiMarathon.getRues()));	
 		
 		fenetre.setVisible(true);
 	}

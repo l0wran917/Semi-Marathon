@@ -14,5 +14,19 @@ public class PointControle {
 		this.rue = rue;
 		this.chronos = chronos;
 	}
+
+	public float getKm() {
+		return km;
+	}
+
+	public Rue getRue() {
+		return rue;
+	}
+
+	public ArrayList<ChronometragePoint> getChronos() {
+		return chronos;
+	}
+	
+	
 	
 }

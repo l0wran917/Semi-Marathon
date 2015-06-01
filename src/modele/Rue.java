@@ -29,8 +29,16 @@ public class Rue {
 		return numOrdre;
 	}
 
-	public PointControle getPointControle() {
-		return pointControle;
+	public String getPointControle() {
+		
+		if(pointControle == null)
+		{
+			return "qzfefe";
+		}
+		else 
+		{
+			return Float.toString(pointControle.getKm()); // convertit le km de type float en string
+		}
 	}
 	
 	

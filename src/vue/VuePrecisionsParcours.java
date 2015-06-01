@@ -23,7 +23,7 @@ public class VuePrecisionsParcours extends JPanel{
 		
 		for(Rue rue : rues)
 		{
-			String texteAffiche = rue.getNom() + " : " + rue.getEmail(); 
+			String texteAffiche = rue.getNumOrdre() + " : " + rue.getNom() + "  " + rue.getPointControle(); 
 			
 			// Stock les labels s'il y a besoin de les modifier
 			lblRues.add(new JLabel(texteAffiche));
