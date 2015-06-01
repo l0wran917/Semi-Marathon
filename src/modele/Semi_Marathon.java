@@ -85,8 +85,8 @@ public class Semi_Marathon {
 	public ArrayList<Coureur> getCoureur()
 	{ return coureurs; }
 	
-	public void refresh()
-	{ fenetre.repaint(); fenetre.setVisible(true);}
+	public JFrame getFrame()
+	{ return fenetre; }
 	
 	
 }
