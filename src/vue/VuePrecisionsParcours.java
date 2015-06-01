@@ -13,6 +13,8 @@ public class VuePrecisionsParcours extends JPanel{
 	
 	
 	
+	
+	
 }
 
 

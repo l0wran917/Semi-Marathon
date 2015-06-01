@@ -8,5 +8,12 @@ public class TypeDossard {
 	private String description;
 	
 	private ArrayList<Coureur> coureurs;
+	
+	public TypeDossard(String nom, String description, ArrayList<Coureur> coureurs)
+	{
+		this.nom = nom;
+		this.description = description;
+		this.coureurs = coureurs;
+	}
 
 }

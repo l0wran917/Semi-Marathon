@@ -22,7 +22,7 @@ public class VueInscrits extends JPanel{
 		
 		for(Coureur coureur : inscrits)
 		{
-			String texteAffiche = coureur.getNumDossard() + " : " + coureur.getNom() + " " + coureur.getPrenom() + " " + coureur.getAnneeNaissance() ;
+			String texteAffiche = coureur.getNumDossard() + " : " + coureur.getNom() + " " + coureur.getPrenom() + " " + coureur.getDateNaiss() ;
 			
 			// Stock les labels s'il y a besoin de les modifier
 			lblInscrits.add(new JLabel(texteAffiche));
