@@ -2,13 +2,12 @@ package src.vue;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.lang.model.element.TypeParameterElement;
-import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,6 +21,7 @@ import javax.swing.SwingConstants;
 
 import src.modele.Semi_Marathon;
 
+@SuppressWarnings("serial")
 public class VueInscriptionPDF extends JPanel implements ActionListener {
 	
 	private JTextField nom;
@@ -239,13 +239,13 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		
 		prixInscription = new ArrayList<JRadioButton>();
 		
-		JRadioButton prix24 = new JRadioButton("<html>24€ du 01/09/2014 au 20/12/2014</html>");
+		JRadioButton prix24 = new JRadioButton("24€ du 01/09/2014 au 20/12/2014");
 		prix24.setActionCommand("24");
 		prixInscription.add(prix24);
-		JRadioButton prix27 = new JRadioButton("<html>27€ du 21/12/2014 au 20/01/2015</html>");
+		JRadioButton prix27 = new JRadioButton("27€ du 21/12/2014 au 20/01/2015");
 		prix27.setActionCommand("27");
 		prixInscription.add(prix27);
-		JRadioButton prix33 = new JRadioButton("<html>33€ du 21/01/2015 au 10/02/2015</html>");
+		JRadioButton prix33 = new JRadioButton("33€ du 21/01/2015 au 10/02/2015");
 		prix33.setActionCommand("33");
 		prixInscription.add(prix33);
 		
@@ -258,8 +258,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		dateInscription = new JTextField();
 		pnlDate.add(new JLabel("Date Inscription :", SwingConstants.CENTER));
 		pnlDate.add(dateInscription);
-				
-		
+					
 		pnlCenter.add(pnlDossard);
 		pnlCenter.add(pnlPrix);
 		pnlCenter.add(pnlDate);
@@ -277,7 +276,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		
 	}
 	
-	public boolean verificationDonneesSaisie()
+	public boolean erreurDonneesSaisie()
 	{
 		boolean infoIncorrect = false; // On suppose qu'il n'y a pas d'erreur (s'il y a erreur, bool passe vrai)
 
@@ -316,12 +315,10 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 			
 		if(paiementCB.isSelected())
 		{
-			System.out.println("cb");
 			for(int i = 1; i <= infosPaiement.getComponentCount(); i+=2)
 			{
 				if(infosPaiement.getComponent(i) instanceof JTextField)
 				{
-					System.out.println(infosPaiement.getComponent(i));
 					if(((JTextField) infosPaiement.getComponent(i)).getText().length() == 0)
 					{
 						metLblPrecedentCouleur(infosPaiement, infosPaiement.getComponent(i), "red");
@@ -334,7 +331,52 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		}
 		
 		// Verification sasDepart
+		boolean dossardNonSelect = false;
+		int i = 0;
+		while(i<dossard.size() && !dossard.get(i).isSelected())
+			i++;
+		if(i>=dossard.size() || !dossard.get(i).isSelected()) // si aucun selectionner on va jusqua i=taille
+			// => IndexOutOfBound
+		{
+			dossardNonSelect = true;
+			infoIncorrect = true;
+		}
 		
+		for(JRadioButton radio : dossard)
+		{
+			if(dossardNonSelect)
+				metRadioBtnCouleur(radio, "red");
+			else
+				metRadioBtnCouleur(radio, "black");
+		}
+		
+		boolean prixNonSelect = false;
+		i = 0;
+		while(i<prixInscription.size() && !prixInscription.get(i).isSelected())
+			i++;
+		if(i>=prixInscription.size() || !prixInscription.get(i).isSelected()) // si aucun selectionner on va jusqua i=taille
+			// => IndexOutOfBound
+		{
+			prixNonSelect = true;
+			infoIncorrect = true;
+		}
+		
+		for(JRadioButton radio : prixInscription)
+		{
+			if(prixNonSelect)
+				metRadioBtnCouleur(radio, "red");
+			else
+				metRadioBtnCouleur(radio, "black");
+		}
+		
+		JPanel pnlCenterSas = (JPanel) ((Container) sasDepart.getComponents()[0]).getComponents()[2];
+		if(dateInscription.getText().length() == 0)
+		{
+			infoIncorrect = true;
+			metLblPrecedentCouleur(pnlCenterSas, dateInscription, "red");
+		}
+		else
+			metLblPrecedentCouleur(pnlCenterSas, dateInscription, "black");
 		
 		
 		return infoIncorrect;
@@ -387,6 +429,8 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 					radio.getText().substring(debutText, finText) + 
 					"</span></html>");
 		}
+		
+		semiMarathon.refresh();
 	}
 
 	
@@ -398,8 +442,11 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 			
 			if(btn.getActionCommand() == "valider")
 			{
-				if(verificationDonneesSaisie())
-					JOptionPane.showMessageDialog(semiMarathon.getFrame(), "Information manquante ou incorrecte");
+				if(erreurDonneesSaisie())
+					JOptionPane.showMessageDialog(semiMarathon.getFrame(), "Information manquante ou incorrecte",
+						"Erreur", JOptionPane.WARNING_MESSAGE);
+				else
+					JOptionPane.showMessageDialog(semiMarathon.getFrame(), "Ok");
 			}
 		}
 		
