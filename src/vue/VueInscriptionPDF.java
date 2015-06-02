@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.lang.model.element.TypeParameterElement;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -270,7 +271,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		JTabbedPane tabs = new JTabbedPane();
 		tabs.addTab("Infos Coureur", infosPerso);
 		tabs.addTab("Modalite Paiement", modalitePaiement);
-		tabs.addTab("Modalite Paiement", sasDepart);
+		tabs.addTab("Sas Depart", sasDepart);
 		
 		this.add(tabs);
 		
@@ -280,32 +281,73 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 	{
 		boolean infoIncorrect = false; // On suppose qu'il n'y a pas d'erreur (s'il y a erreur, bool passe vrai)
 
-		// Parcout chaque textfield du panel
+		// Parcout chaque textfield du panel infos
 		for(int i = 1; i <= infosPerso.getComponentCount(); i+=2)
 		{
 			if(infosPerso.getComponent(i) instanceof JTextField)
 			{
-				if(((JTextField) infosPerso.getComponent(i)).getText().length() == 0)
+				if(infosPerso.getComponent(i) != etat && infosPerso.getComponent(i) != club &&
+						infosPerso.getComponent(i) != license && infosPerso.getComponent(i) != entreprise &&
+						infosPerso.getComponent(i) != ecole) // Champs facultatif
 				{
-					metLblCouleur(infosPerso.getComponent(i), "red");
-					infoIncorrect = true;
+					if(((JTextField) infosPerso.getComponent(i)).getText().length() == 0)
+					{
+						metLblPrecedentCouleur(infosPerso, infosPerso.getComponent(i), "red");
+						infoIncorrect = true;
+					}
+					else
+						metLblPrecedentCouleur(infosPerso, infosPerso.getComponent(i), "black");
 				}
-				else
-					metLblCouleur(infosPerso.getComponent(i), "black");
 			}
 		}
+		
+		// Verification choix paiement
+		if(!paiementCheque.isSelected() && !paiementCB.isSelected())
+		{
+			infoIncorrect = true;
+			metRadioBtnCouleur(paiementCheque, "red");
+			metRadioBtnCouleur(paiementCB, "red");
+		}
+		else
+		{
+			metRadioBtnCouleur(paiementCheque, "black");
+			metRadioBtnCouleur(paiementCB, "black");
+		}
+			
+		if(paiementCB.isSelected())
+		{
+			System.out.println("cb");
+			for(int i = 1; i <= infosPaiement.getComponentCount(); i+=2)
+			{
+				if(infosPaiement.getComponent(i) instanceof JTextField)
+				{
+					System.out.println(infosPaiement.getComponent(i));
+					if(((JTextField) infosPaiement.getComponent(i)).getText().length() == 0)
+					{
+						metLblPrecedentCouleur(infosPaiement, infosPaiement.getComponent(i), "red");
+						infoIncorrect = true;
+					}
+					else
+						metLblPrecedentCouleur(infosPaiement, infosPaiement.getComponent(i), "black");
+				}
+			}
+		}
+		
+		// Verification sasDepart
+		
+		
 		
 		return infoIncorrect;
 	}
 	
-	public void metLblCouleur(Component composent, String couleur)
+	public void metLblPrecedentCouleur(JPanel panel, Component composent, String couleur)
 	{
 		int i = 0;
-		while(i < infosPerso.getComponentCount() && infosPerso.getComponent(i) != composent)
+		while(i < panel.getComponentCount() && panel.getComponent(i) != composent)
 		{ i++; }
-		if(infosPerso.getComponent(i-1) instanceof JLabel)
+		if(panel.getComponent(i-1) instanceof JLabel)
 		{				
-			JLabel lblPrecedent = (JLabel) infosPerso.getComponent(i-1);
+			JLabel lblPrecedent = (JLabel) panel.getComponent(i-1);
 			
 			if(lblPrecedent.getText().charAt(0) != '<') // Si il n'y a pas de couleur, il n'est pas en html
 			{
@@ -325,6 +367,26 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 			}
 		}
 		semiMarathon.refresh();
+	}
+	
+	public void metRadioBtnCouleur(JRadioButton radio, String couleur)
+	{
+		if(radio.getText().charAt(0) != '<') // Si il n'y a pas de couleur, il n'est pas en html
+		{
+			radio.setText(	"<html><span style=color:" + couleur + ";>" + 
+							radio.getText() + 
+							"</span></html>");
+		}
+		else // Si deja un span, il faut le supprimer pour changer couleur
+		{
+			int debutText = radio.getText().indexOf(";>") + 2; // Indique le debut du motif 
+			// donc la fin = debut motif + taille motif
+			int finText = radio.getText().indexOf("</span>");
+			
+			radio.setText(	"<html><span style=color:" + couleur + ";>" + 
+					radio.getText().substring(debutText, finText) + 
+					"</span></html>");
+		}
 	}
 
 	
