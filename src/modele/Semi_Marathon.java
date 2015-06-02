@@ -6,7 +6,7 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
-import vue.VueInscriptionPDF;
+import vue.VueRetraitDossard;
 
 public class Semi_Marathon {
 	
@@ -74,7 +74,7 @@ public class Semi_Marathon {
 			rues.add(new Rue("Rue du terter", i));
 	
 		
-		fenetre.add(new VueInscriptionPDF(this));	
+		fenetre.add(new VueRetraitDossard(this));	
 		
 		fenetre.setVisible(true);
 	}
