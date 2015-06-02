@@ -88,5 +88,8 @@ public class Semi_Marathon {
 	public JFrame getFrame()
 	{ return fenetre; }
 	
+	public void refresh()
+	{ fenetre.repaint(); fenetre.setVisible(true); }
+	
 	
 }
