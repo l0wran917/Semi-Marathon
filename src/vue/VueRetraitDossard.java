@@ -24,6 +24,7 @@ public class VueRetraitDossard extends JPanel implements ActionListener{
 	public VueRetraitDossard(Semi_Marathon semiMarathon)
 	{
 		this.semiMarathon = semiMarathon;
+		//semiMarathon.setSize(330, 300);
 		
 		this.setLayout(new BorderLayout());
 		
@@ -34,18 +35,14 @@ public class VueRetraitDossard extends JPanel implements ActionListener{
 		numDossard = new JTextField();
 		//pnlSaisieNumDossard.add(lblNumDossard);
 		
-		pnlSaisieNumDossard.add(new JLabel());
-		pnlSaisieNumDossard.add(new JLabel());
-		pnlSaisieNumDossard.add(new JLabel());
-		pnlSaisieNumDossard.add(new JLabel());
-		pnlSaisieNumDossard.add(new JLabel());
+		for(int i = 0; i < 5; i++)
+			pnlSaisieNumDossard.add(new JLabel());
+		
 		pnlSaisieNumDossard.add(lblNumDossard);
 		pnlSaisieNumDossard.add(numDossard);
-		pnlSaisieNumDossard.add(new JLabel());
-		pnlSaisieNumDossard.add(new JLabel());
-		pnlSaisieNumDossard.add(new JLabel());
-		pnlSaisieNumDossard.add(new JLabel());
-		pnlSaisieNumDossard.add(new JLabel());
+		
+		for(int i = 0; i < 5; i++)
+			pnlSaisieNumDossard.add(new JLabel());
 		
 		
 		btnValider = new JButton("Enregistrer retrait dossard");

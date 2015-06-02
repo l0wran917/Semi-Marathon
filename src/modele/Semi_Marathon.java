@@ -99,7 +99,6 @@ public class Semi_Marathon {
 
 	public ArrayList<Rue> getRues()
 	{ return rues; }
-
-	
+		
 	
 }
