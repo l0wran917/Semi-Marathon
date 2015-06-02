@@ -6,8 +6,7 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
-import vue.VueMenuUtilisateur;
-import vue.VueRetraitDossard;
+import vue.VuePartenaires;
 
 public class Semi_Marathon {
 	
@@ -65,12 +64,11 @@ public class Semi_Marathon {
 		horairesRemiseDossard[2] = new String("8/03 7-9");
 		
 		partenaires = new ArrayList<Partenaire>();	
-
 		for(int i=1; i < 4; i++) // Ajout de partenaires pour test
 			partenaires.add(new Partenaire("Partenaire " + Integer.toString(i), "Mail " + Integer.toString(i)));
 	
 		coureurs = new ArrayList<Coureur>();
-		for(int i=1; i < 5; i++) // Ajout de partenaires pour test
+		for(int i=1; i < 40; i++) // Ajout de partenaires pour test
 			coureurs.add(new Coureur("Nom", "Prenom", 1));
 		
 		rues = new ArrayList<Rue>();
@@ -78,7 +76,10 @@ public class Semi_Marathon {
 			rues.add(new Rue("Rue du terter", i));
 	
 		
-		fenetre.add(new VueMenuUtilisateur(this));	
+
+		// fenetre.add(new VueMenuUtilisateur(this));
+	//	fenetre.add(new VuePartenaires(partenaires, this));
+
 		
 		fenetre.setVisible(true);
 	}
@@ -132,6 +133,11 @@ public class Semi_Marathon {
 
 	public String getNbMaxCoureur() {
 		return Integer.toString(nbMaxPart);
+	}
+
+	public void setSize(int x, int y)
+	{
+		fenetre.setSize(x, y);
 	}
 	
 }
