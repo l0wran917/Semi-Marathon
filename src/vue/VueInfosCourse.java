@@ -1,5 +1,9 @@
 package vue;
 
-public class VueInfosCourse {
+import javax.swing.JPanel;
+
+public class VueInfosCourse extends JPanel {
+	
+	
 
 }

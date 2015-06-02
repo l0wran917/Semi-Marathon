@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
+import vue.VueMenuUtilisateur;
 import vue.VueRetraitDossard;
 
 public class Semi_Marathon {
@@ -43,6 +44,7 @@ public class Semi_Marathon {
 		fenetre = new JFrame("Semi Marathon");
 		fenetre.setSize(800, 600);
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fenetre.setResizable(false);
 			
 		ville = "Paris";
 		date = new Date(2015, 3, 8); // 8 Mars 2015
@@ -74,7 +76,7 @@ public class Semi_Marathon {
 			rues.add(new Rue("Rue du terter", i));
 	
 		
-		fenetre.add(new VueRetraitDossard(this));	
+		fenetre.add(new VueMenuUtilisateur(this));	
 		
 		fenetre.setVisible(true);
 	}
@@ -99,6 +101,27 @@ public class Semi_Marathon {
 
 	public ArrayList<Rue> getRues()
 	{ return rues; }
+	
+	public String getVille()
+	{ return ville; }
+
+	public String getDate() {
+		String dateFormate = date.getDate() + "/" + date.getMonth() + "/" + date.getYear();
+		
+		return dateFormate;
+	}
+
+	public String getDistance() {
+		return Float.toString(longueur);
+	}
+
+	public String getNbInscrits() {
+		return Integer.toString(coureurs.size());
+	}
+
+	public String getNbMaxCoureur() {
+		return Integer.toString(nbMaxPart);
+	}
 		
 	
 }
