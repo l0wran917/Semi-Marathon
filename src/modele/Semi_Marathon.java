@@ -6,8 +6,7 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
-import vue.VueInscrits;
-import vue.VuePrecisionsParcours;
+import vue.VueInscriptionPDF;
 
 public class Semi_Marathon {
 	
@@ -36,8 +35,15 @@ public class Semi_Marathon {
 	
 	private final int NB_HORAIRE_REMISE_DOSSARDS = 3;
 	
+	private JFrame fenetre;
+	
 	public Semi_Marathon()
 	{
+		
+		fenetre = new JFrame("Semi Marathon");
+		fenetre.setSize(800, 600);
+		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
 		ville = "Paris";
 		date = new Date(2015, 3, 8); // 8 Mars 2015
 		longueur = 21.1f;
@@ -54,8 +60,8 @@ public class Semi_Marathon {
 		horairesRemiseDossard[1] = new String("7/03 10-19");
 		horairesRemiseDossard[2] = new String("8/03 7-9");
 		
-		
-		partenaires = new ArrayList<Partenaire>();
+		partenaires = new ArrayList<Partenaire>();	
+
 		for(int i=1; i < 4; i++) // Ajout de partenaires pour test
 			partenaires.add(new Partenaire("Partenaire " + Integer.toString(i), "Mail " + Integer.toString(i)));
 	
@@ -67,28 +73,33 @@ public class Semi_Marathon {
 		for(int i=1; i < 5; i++) // Ajout de rues pour test
 			rues.add(new Rue("Rue du terter", i));
 	
-	}
-	
-	public static void main(String args[])
-	{
-		JFrame fenetre = new JFrame("Semi Marathon");
-		fenetre.setSize(800, 600);
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		Semi_Marathon semiMarathon = new Semi_Marathon();
-		fenetre.add(new VuePrecisionsParcours(semiMarathon.getRues()));	
+		fenetre.add(new VueInscriptionPDF(this));	
 		
 		fenetre.setVisible(true);
 	}
 	
+	public static void main(String args[])
+	{
+		Semi_Marathon semiMarathon = new Semi_Marathon();
+	}
+
 	public ArrayList<Partenaire> getPartenaires()
 	{ return partenaires; }
 	
 	public ArrayList<Coureur> getCoureur()
 	{ return coureurs; }
 	
+
+	public JFrame getFrame()
+	{ return fenetre; }
+	
+	public void refresh()
+	{ fenetre.repaint(); fenetre.setVisible(true); }
+
 	public ArrayList<Rue> getRues()
 	{ return rues; }
+
 	
 	
 }
