@@ -34,6 +34,8 @@ public class Semi_Marathon {
 	private ArrayList<Rue> rues;
 	private ArrayList<Coureur> coureurs;
 	
+	private ArrayList<JFrame> fenetres;
+	
 	private final int NB_HORAIRE_REMISE_DOSSARDS = 3;
 	
 	private JFrame fenetre;
@@ -86,12 +88,21 @@ public class Semi_Marathon {
 		Semi_Marathon semiMarathon = new Semi_Marathon();
 	}
 
+	public void ouvrir(String actionCommand) {
+		switch(actionCommand)
+		{
+			case "inscription" :
+				
+				
+			break;
+		}
+	}
+	
 	public ArrayList<Partenaire> getPartenaires()
 	{ return partenaires; }
 	
 	public ArrayList<Coureur> getCoureur()
 	{ return coureurs; }
-	
 
 	public JFrame getFrame()
 	{ return fenetre; }
@@ -122,6 +133,5 @@ public class Semi_Marathon {
 	public String getNbMaxCoureur() {
 		return Integer.toString(nbMaxPart);
 	}
-		
 	
 }

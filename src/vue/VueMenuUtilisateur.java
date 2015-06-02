@@ -110,12 +110,8 @@ public class VueMenuUtilisateur extends JPanel implements ActionListener {
 			pnlBtnGauche.add(new JLabel());
 		
 		
-		
-		
 		JPanel pnlImg = new JPanel();
 		pnlImg.add(new JLabel(new ImageIcon("assets/affiche.png")));
-		
-		
 		
 		
 		JPanel pnlBtnDroite = new JPanel();
@@ -147,7 +143,10 @@ public class VueMenuUtilisateur extends JPanel implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		
-		System.out.println(e.getActionCommand());
+		if(e.getSource() instanceof JButton)
+		{
+			semiMarathon.ouvrir(e.getActionCommand());
+		}
 		
 	}
 	
