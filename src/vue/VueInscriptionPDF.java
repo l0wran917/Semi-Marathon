@@ -1,4 +1,4 @@
-package src.vue;
+package vue;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -19,7 +19,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import src.modele.Semi_Marathon;
+import modele.Semi_Marathon;
 
 @SuppressWarnings("serial")
 public class VueInscriptionPDF extends JPanel implements ActionListener {

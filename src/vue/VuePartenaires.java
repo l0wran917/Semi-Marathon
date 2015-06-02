@@ -1,4 +1,4 @@
-package src.vue;
+package vue;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import src.modele.Partenaire;
+import modele.Partenaire;
 
 @SuppressWarnings("serial") // Evite un warning
 public class VuePartenaires extends JPanel{

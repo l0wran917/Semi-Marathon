@@ -1,4 +1,4 @@
-package src.modele;
+package modele;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
-import src.vue.VueInscriptionPDF;
+import vue.VueInscriptionPDF;
 
 public class Semi_Marathon {
 	
@@ -60,7 +60,7 @@ public class Semi_Marathon {
 		horairesRemiseDossard[1] = new String("7/03 10-19");
 		horairesRemiseDossard[2] = new String("8/03 7-9");
 		
-		partenaires = new ArrayList<Partenaire>();
+		partenaires = new ArrayList<Partenaire>();	
 		for(int i=1; i < 4; i++) // Ajout de partenaires pour test
 			partenaires.add(new Partenaire("Partenaire " + Integer.toString(i), "Mail " + Integer.toString(i)));
 	
@@ -76,6 +76,7 @@ public class Semi_Marathon {
 	
 	public static void main(String args[])
 	{
+		System.out.println("rtyu");
 		Semi_Marathon semiMarathon = new Semi_Marathon();
 	}
 
