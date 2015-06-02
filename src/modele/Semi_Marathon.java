@@ -6,9 +6,10 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
+import vue.VueMenuUtilisateur;
 import vue.VuePartenaires;
 
-public class Semi_Marathon {
+public class Semi_Marathon{
 	
 	private String ville;
 	private Date date;
@@ -37,15 +38,14 @@ public class Semi_Marathon {
 	
 	private final int NB_HORAIRE_REMISE_DOSSARDS = 3;
 	
-	private JFrame fenetre;
-	
 	public Semi_Marathon()
 	{
 		
-		fenetre = new JFrame("Semi Marathon");
-		fenetre.setSize(800, 600);
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenetre.setResizable(false);
+		fenetres = new ArrayList<JFrame>();
+		fenetres.add(new JFrame("Semi Marathon"));
+		fenetres.get(0).setSize(800, 600);
+		fenetres.get(0).setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fenetres.get(0).setResizable(false);
 			
 		ville = "Paris";
 		date = new Date(2015, 3, 8); // 8 Mars 2015
@@ -77,11 +77,11 @@ public class Semi_Marathon {
 	
 		
 
-		// fenetre.add(new VueMenuUtilisateur(this));
-	//	fenetre.add(new VuePartenaires(partenaires, this));
+		fenetres.get(0).add(new VueMenuUtilisateur(this));
+		
 
 		
-		fenetre.setVisible(true);
+		fenetres.get(0).setVisible(true);
 	}
 	
 	public static void main(String args[])
@@ -92,9 +92,13 @@ public class Semi_Marathon {
 	public void ouvrir(String actionCommand) {
 		switch(actionCommand)
 		{
-			case "inscription" :
-				
-				
+			case VueMenuUtilisateur.PARTENAIRES :
+				JFrame fenetreTmp = new JFrame(VueMenuUtilisateur.PARTENAIRES);
+				fenetreTmp.setSize(300, 600);
+				fenetreTmp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				fenetreTmp.add(new VuePartenaires(partenaires, this));
+				fenetreTmp.setVisible(true);
+				fenetres.add(fenetreTmp);
 			break;
 		}
 	}
@@ -106,10 +110,10 @@ public class Semi_Marathon {
 	{ return coureurs; }
 
 	public JFrame getFrame()
-	{ return fenetre; }
+	{ return fenetres.get(0); }
 	
 	public void refresh()
-	{ fenetre.repaint(); fenetre.setVisible(true); }
+	{ fenetres.get(0).repaint(); fenetres.get(0).setVisible(true); }
 
 	public ArrayList<Rue> getRues()
 	{ return rues; }
@@ -137,7 +141,7 @@ public class Semi_Marathon {
 
 	public void setSize(int x, int y)
 	{
-		fenetre.setSize(x, y);
+		fenetres.get(0).setSize(x, y);
 	}
 	
 }

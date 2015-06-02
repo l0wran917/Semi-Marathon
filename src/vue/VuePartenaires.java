@@ -27,7 +27,7 @@ public class VuePartenaires extends JPanel{
 	public VuePartenaires(ArrayList<Partenaire> partenaires, Semi_Marathon semi_marathon)
 	{
 		// redefinition de la taille de la fenetre
-		semi_marathon.setSize(300, 600);		
+		//semi_marathon.setSize(300, 600);		
 		lblPartenaires = new ArrayList<JLabel>();
 		panelVueScroll = new JPanel();
 		boutonQuitter = new JButton("Quitter");
@@ -41,7 +41,7 @@ public class VuePartenaires extends JPanel{
 		lblPartenaires.add(new JLabel("Logo", SwingConstants.CENTER));
 		Font boldFont = new Font(lblPartenaires.get(0).getFont().getFontName() , Font.BOLD, lblPartenaires.get(0).getFont().getSize());
 				
-		for(int i = 0; i < 4; i++) // on met en gras les polices des 4 premiers labels
+		for(int i = 0; i < lblPartenaires.size(); i++) // on met en gras les polices des 4 premiers labels
 		{
 			lblPartenaires.get(i).setFont(boldFont);
 		}

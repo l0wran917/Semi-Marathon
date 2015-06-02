@@ -30,6 +30,13 @@ public class VueMenuUtilisateur extends JPanel implements ActionListener {
 	private JButton inscrits;
 	private JButton partenaires;
 	
+	public static final String INSCRIPTION = "Inscription";
+	public static final String PARCOURS = "Parcours";
+	public static final String ADMIN = "Admin";
+	public static final String RESULTATS = "Resultats";
+	public static final String INSCRITS = "Inscrits";
+	public static final String PARTENAIRES = "Partenaires";
+	
 	public VueMenuUtilisateur(Semi_Marathon semiMarathon)
 	{
 		this.semiMarathon = semiMarathon;
@@ -69,27 +76,27 @@ public class VueMenuUtilisateur extends JPanel implements ActionListener {
 		
 		inscription = new JButton("Inscription");
 		inscription.addActionListener(this);
-		inscription.setActionCommand("inscription");
+		inscription.setActionCommand(INSCRIPTION);
 		
 		parcours = new JButton("Parcours");
 		parcours.addActionListener(this);
-		parcours.setActionCommand("parcours");
+		parcours.setActionCommand(PARCOURS);
 		
 		admin = new JButton("Admin");
 		admin.addActionListener(this);
-		admin.setActionCommand("admin");
+		admin.setActionCommand(ADMIN);
 		
 		resultats = new JButton("Resultats");
 		resultats.addActionListener(this);
-		resultats.setActionCommand("resultats");
+		resultats.setActionCommand(RESULTATS);
 		
 		inscrits = new JButton("Inscrits");
 		inscrits.addActionListener(this);
-		inscrits.setActionCommand("inscrits");
+		inscrits.setActionCommand(INSCRITS);
 		
 		partenaires = new JButton("Partenaires");
 		partenaires.addActionListener(this);
-		partenaires.setActionCommand("partenaires");
+		partenaires.setActionCommand(PARTENAIRES);
 
 		JPanel pnlBtnGauche = new JPanel();
 		pnlBtnGauche.setLayout(new GridLayout(7, 2));
