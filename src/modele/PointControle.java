@@ -8,4 +8,25 @@ public class PointControle {
 	private Rue rue;
 	private ArrayList<ChronometragePoint> chronos;
 	
+	public PointControle(float km, Rue rue, ArrayList<ChronometragePoint> chronos)
+	{
+		this.km = km;
+		this.rue = rue;
+		this.chronos = chronos;
+	}
+
+	public float getKm() {
+		return km;
+	}
+
+	public Rue getRue() {
+		return rue;
+	}
+
+	public ArrayList<ChronometragePoint> getChronos() {
+		return chronos;
+	}
+	
+	
+	
 }
