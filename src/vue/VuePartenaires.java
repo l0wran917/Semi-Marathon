@@ -12,8 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-
-import modele.Coureur;
 import modele.Partenaire;
 import modele.Semi_Marathon;
 
@@ -34,14 +32,14 @@ public class VuePartenaires extends JPanel{
 				
 		this.setLayout(new BorderLayout());
 		// nbInscrits ligne + 1 pour les titres et 1 colonne 
-		panelVueScroll.setLayout(new GridLayout(partenaires.size() + 1, 4));
+		panelVueScroll.setLayout(new GridLayout(partenaires.size() + 1, 3));
 				
 		lblPartenaires.add(new JLabel("Nom", SwingConstants.CENTER));
 		lblPartenaires.add(new JLabel("Email", SwingConstants.CENTER));
 		lblPartenaires.add(new JLabel("Logo", SwingConstants.CENTER));
 		Font boldFont = new Font(lblPartenaires.get(0).getFont().getFontName() , Font.BOLD, lblPartenaires.get(0).getFont().getSize());
 				
-		for(int i = 0; i < 4; i++) // on met en gras les polices des 4 premiers labels
+		for(int i = 0; i < 3; i++) // on met en gras les polices des 4 premiers labels
 		{
 			lblPartenaires.get(i).setFont(boldFont);
 		}
@@ -50,7 +48,7 @@ public class VuePartenaires extends JPanel{
 		{
 			lblPartenaires.add(new JLabel(partenaire.getNom(), SwingConstants.CENTER));
 			lblPartenaires.add(new JLabel(partenaire.getEmail(), SwingConstants.CENTER));
-			//lblPartenaires.add(new JLabel(partenaire.getPrenom(), SwingConstants.CENTER));
+			lblPartenaires.add(new JLabel("logo.jpg", SwingConstants.CENTER));
 		}
 				
 		for(JLabel label : lblPartenaires) // on traite chaque labels 
