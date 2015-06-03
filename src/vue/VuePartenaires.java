@@ -48,19 +48,17 @@ public class VuePartenaires extends JPanel{
 		{
 			lblPartenaires.add(new JLabel(partenaire.getNom(), SwingConstants.CENTER));
 			lblPartenaires.add(new JLabel(partenaire.getEmail(), SwingConstants.CENTER));
-			lblPartenaires.add(new JLabel("logo.jpg", SwingConstants.CENTER));
+			//lblPartenaires.add(new JLabel("logo.jpg", SwingConstants.CENTER));
+			lblPartenaires.add(partenaire.getLogo());
 		}
 				
 		for(JLabel label : lblPartenaires) // on traite chaque labels 
 		{
-			label.setHorizontalTextPosition(0);
 			label.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
 			panelVueScroll.add(label);
 		}
 				
 		this.add(new JScrollPane(panelVueScroll), BorderLayout.CENTER); // Le bouton en haut de la fenetre
-		this.add(boutonQuitter, BorderLayout.NORTH); // la liste au milieu
-	
 	}
 	
 }

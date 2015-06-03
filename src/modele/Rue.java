@@ -33,7 +33,7 @@ public class Rue {
 		
 		if(pointControle == null)
 		{
-			return "qzfefe";
+			return "";
 		}
 		else 
 		{

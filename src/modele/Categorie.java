@@ -15,4 +15,6 @@ public class Categorie {
 		this.anneeFin = anneeFin;
 	}
 
+	public String getCode()
+	{ return code; }
 }
