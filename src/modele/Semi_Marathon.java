@@ -6,8 +6,10 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
+import vue.VueInscrits;
 import vue.VueMenuUtilisateur;
 import vue.VuePartenaires;
+import vue.VuePrecisionsParcours;
 
 public class Semi_Marathon{
 	
@@ -90,17 +92,29 @@ public class Semi_Marathon{
 	}
 
 	public void ouvrir(String actionCommand) {
+		
+		JFrame fenetreTmp = new JFrame(actionCommand);
+		fenetreTmp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		fenetreTmp.setResizable(false);
+		fenetreTmp.setVisible(true);
+		
+
 		switch(actionCommand)
 		{
 			case VueMenuUtilisateur.PARTENAIRES :
-				JFrame fenetreTmp = new JFrame(VueMenuUtilisateur.PARTENAIRES);
 				fenetreTmp.setSize(300, 600);
-				fenetreTmp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				fenetreTmp.add(new VuePartenaires(partenaires, this));
-				fenetreTmp.setVisible(true);
-				fenetres.add(fenetreTmp);
+			break;
+			case VueMenuUtilisateur.INSCRITS :
+				fenetreTmp.setSize(300, 600);
+				fenetreTmp.add(new VueInscrits(coureurs, this));
+			break;
+			case VueMenuUtilisateur.PARCOURS :
+				fenetreTmp.setSize(300, 600);
+				fenetreTmp.add(new VuePrecisionsParcours(rues));
 			break;
 		}
+		fenetres.add(fenetreTmp);
 	}
 	
 	public ArrayList<Partenaire> getPartenaires()

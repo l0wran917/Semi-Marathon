@@ -25,7 +25,7 @@ public class VueInscrits extends JPanel{
 	public VueInscrits(ArrayList<Coureur> inscrits, Semi_Marathon semi_marathon)
 	{
 		// redefinition de la taille de la fenetre
-		semi_marathon.setSize(300, 600);
+		//semi_marathon.setSize(300, 600);
 		
 		lblInscrits = new ArrayList<JLabel>();
 		panelVueScroll = new JPanel();
