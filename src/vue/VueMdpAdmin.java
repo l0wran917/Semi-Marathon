@@ -2,11 +2,13 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -26,7 +28,7 @@ public class VueMdpAdmin extends JPanel implements ActionListener {
 	public VueMdpAdmin(Semi_Marathon semiMarathon)
 	{
 		// 290, 75
-		
+		System.err.println("mdp");
 		this.semiMarathon = semiMarathon;
 		
 		this.setLayout(new BorderLayout());
@@ -60,7 +62,9 @@ public class VueMdpAdmin extends JPanel implements ActionListener {
 		{
 			if(Arrays.equals(mdp.getPassword(), "motdepasse".toCharArray()))
 			{
-				JOptionPane.showMessageDialog(this, "Ok");
+				semiMarathon.ouvrir(VueMenuUtilisateur.ADMIN);
+				// ferme la fenetre de mdp
+				((JFrame) this.getParent().getParent().getParent().getParent()).dispose();
 			}
 			else
 			{

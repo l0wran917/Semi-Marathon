@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
+import vue.VueAdmin;
 import vue.VueInscriptionPDF;
 import vue.VueInscrits;
 import vue.VueMdpAdmin;
@@ -123,8 +124,14 @@ public class Semi_Marathon{
 				fenetreTmp.add(new VueResultats());
 			break;
 			case VueMenuUtilisateur.ADMIN_MDP :
-				fenetreTmp.setSize(290, 75);
+				fenetreTmp.setSize(300, 90);
 				fenetreTmp.add(new VueMdpAdmin(this));
+			break;
+			case VueMenuUtilisateur.ADMIN :
+				fenetreTmp.setSize(500, 500);
+				fenetreTmp.setResizable(true);
+				fenetreTmp.add(new VueAdmin());
+			break;
 			default:
 				fenetreTmp.setVisible(false); // Si aucune action reconnu, on affiche pas fenetre
 			break;
