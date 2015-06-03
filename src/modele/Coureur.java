@@ -99,6 +99,9 @@ public class Coureur {
 		return heure;
 	}
 	
+	public char getSexe()
+	{ return sexe; }
+	
 }
 
 

@@ -130,7 +130,7 @@ public class Semi_Marathon{
 			break;
 			case VueMenuUtilisateur.RESULTATS :
 				fenetreTmp.setSize(700, 480);
-				fenetreTmp.add(new VueResultats());
+				fenetreTmp.add(new VueResultats(coureurs));
 			break;
 			case VueMenuUtilisateur.ADMIN_MDP :
 				fenetreTmp.setSize(300, 90);
