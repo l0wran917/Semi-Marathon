@@ -22,6 +22,10 @@ public class VueAdmin extends JPanel implements ActionListener {
 	
 	private Semi_Marathon semiMarathon;
 	
+	public static final String RETRAIT_DOSSARD = "Enregistrer retrait dossard";
+	public static final String INSTITUTIONS = "Ecoles / Entreprises";
+	public static final String MODIF_INFOS = "";	
+	
 	public VueAdmin(Semi_Marathon semiMarathon)
 	{
 		this.semiMarathon = semiMarathon;
@@ -34,15 +38,15 @@ public class VueAdmin extends JPanel implements ActionListener {
 		
 		retraitDossard = new JButton("<html><center>Valider retrait<br>dossard</center></html>");
 		retraitDossard.addActionListener(this);
-		retraitDossard.setActionCommand("dossard");
+		retraitDossard.setActionCommand(RETRAIT_DOSSARD);
 		
 		institution = new JButton("<html><center>Afficher ecoles et entreprises</center></html>");
 		institution.addActionListener(this);
-		institution.setActionCommand("institution");
+		institution.setActionCommand(INSTITUTIONS);
 		
 		modifInfos = new JButton("Modifier informations");
 		modifInfos.addActionListener(this);
-		modifInfos.setActionCommand("modification");
+		modifInfos.setActionCommand(MODIF_INFOS);
 		
 		JLabel titre = new JLabel("Administration", SwingConstants.CENTER);
 		titre.setFont(new Font(titre.getFont().getFontName(), titre.getFont().getStyle(), 36));
@@ -108,13 +112,8 @@ public class VueAdmin extends JPanel implements ActionListener {
 		
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		switch(e.getActionCommand())
-		{
-			case VueMenuUtilisateur.INSCRIPTION : 
-				semiMarathon.ouvrir(VueMenuUtilisateur.INSCRIPTION );
-			break;
-		}
+	public void actionPerformed(ActionEvent e) { 
+		semiMarathon.ouvrir(e.getActionCommand() );
 	}
 	
 }

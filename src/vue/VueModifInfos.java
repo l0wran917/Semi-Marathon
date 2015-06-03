@@ -22,6 +22,7 @@ public class VueModifInfos extends JPanel implements ActionListener{
 	
 	public VueModifInfos()
 	{
+		// 410, 275
 		this.setLayout(new BorderLayout());
 		
 		valider = new JButton("Valider");

@@ -17,6 +17,7 @@ import vue.VueModifInfos;
 import vue.VuePartenaires;
 import vue.VuePrecisionsParcours;
 import vue.VueResultats;
+import vue.VueRetraitDossard;
 
 
 public class Semi_Marathon{
@@ -85,8 +86,7 @@ public class Semi_Marathon{
 		for(int i=1; i < 40; i++) // Ajout de rues pour test
 			rues.add(new Rue("Rue du terter", i));
 		
-		fenetres.get(0).setSize(410, 275);
-		fenetres.get(0).add(new VueModifInfos());
+		fenetres.get(0).add(new VueMenuUtilisateur(this));
 
 		fenetres.get(0).setVisible(true);
 	}
@@ -126,10 +126,6 @@ public class Semi_Marathon{
 			case VueMenuUtilisateur.RESULTATS :
 				fenetreTmp.setSize(700, 480);
 				fenetreTmp.add(new VueResultats());
-				/*
- 				fenetreTmp.setSize(1200, 600);
-				fenetreTmp.add(new VueRechercheResultat(coureurs, this)); 
-				 */
 			break;
 			case VueMenuUtilisateur.ADMIN_MDP :
 				fenetreTmp.setSize(300, 90);
@@ -137,8 +133,15 @@ public class Semi_Marathon{
 			break;
 			case VueMenuUtilisateur.ADMIN :
 				fenetreTmp.setSize(500, 250);
-				fenetreTmp.setResizable(true);
 				fenetreTmp.add(new VueAdmin(this));
+			break;
+			case VueAdmin.RETRAIT_DOSSARD :
+				fenetreTmp.setSize(330, 200);
+				fenetreTmp.add(new VueRetraitDossard(this));
+			break;
+			case VueAdmin.MODIF_INFOS :
+				fenetreTmp.setSize(410,275);
+				fenetreTmp.add(new VueModifInfos());
 			break;
 			default:
 				fenetreTmp.setVisible(false); // Si aucune action reconnu, on affiche pas fenetre
