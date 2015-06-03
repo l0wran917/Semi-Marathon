@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import vue.VueAdmin;
+import vue.VueEcoleEntreprise;
 import vue.VueInscriptionPDF;
 import vue.VueInscrits;
 import vue.VueMdpAdmin;
@@ -86,6 +87,10 @@ public class Semi_Marathon{
 		for(int i=1; i < 40; i++) // Ajout de rues pour test
 			rues.add(new Rue("Rue du terter", i));
 		
+		institutions = new ArrayList<Ecole_Entreprise>();
+		for(int i = 0; i < 40; i ++)
+			institutions.add(new Ecole_Entreprise("instutution" ,coureurs));
+		
 		fenetres.get(0).add(new VueMenuUtilisateur(this));
 
 		fenetres.get(0).setVisible(true);
@@ -117,7 +122,7 @@ public class Semi_Marathon{
 			break;
 			case VueMenuUtilisateur.PARCOURS :
 				fenetreTmp.setSize(300, 600);
-				fenetreTmp.add(new VuePrecisionsParcours(rues));
+				fenetreTmp.add(new VuePrecisionsParcours(rues));				
 			break;
 			case VueMenuUtilisateur.INSCRIPTION :
 				fenetreTmp.setSize(800, 600);

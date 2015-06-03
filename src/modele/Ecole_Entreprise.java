@@ -12,4 +12,9 @@ public class Ecole_Entreprise {
 		this.nom = nom;
 		this.coureurs = coureurs;
 	}
+	
+	public String getNom()
+	{ return nom; }
+	
+	
 }
