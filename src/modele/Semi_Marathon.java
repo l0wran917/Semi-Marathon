@@ -6,11 +6,9 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
-import vue.VueInscriptionPDF;
-import vue.VueInscrits;
 import vue.VuePartenaires;
 
-public class Semi_Marathon {
+public class Semi_Marathon{
 	
 	private String ville;
 	private Date date;
@@ -35,16 +33,18 @@ public class Semi_Marathon {
 	private ArrayList<Rue> rues;
 	private ArrayList<Coureur> coureurs;
 	
-	private final int NB_HORAIRE_REMISE_DOSSARDS = 3;
+	private ArrayList<JFrame> fenetres;
 	
-	private JFrame fenetre;
+	private final int NB_HORAIRE_REMISE_DOSSARDS = 3;
 	
 	public Semi_Marathon()
 	{
 		
-		fenetre = new JFrame("Semi Marathon");
-		fenetre.setSize(800, 600);
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fenetres = new ArrayList<JFrame>();
+		fenetres.add(new JFrame("Semi Marathon"));
+		fenetres.get(0).setSize(800, 600);
+		fenetres.get(0).setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fenetres.get(0).setResizable(false);
 			
 		ville = "Paris";
 		date = new Date(2015, 3, 8); // 8 Mars 2015
@@ -75,10 +75,12 @@ public class Semi_Marathon {
 			rues.add(new Rue("Rue du terter", i));
 	
 		
-		//fenetre.add(new VueInscriptionPDF(this));	
-		fenetre.add(new VuePartenaires(partenaires, this));
+
+		fenetres.get(0).add(new VueMenuUtilisateur(this));
 		
-		fenetre.setVisible(true);
+
+		
+		fenetres.get(0).setVisible(true);
 	}
 	
 	public static void main(String args[])
@@ -86,25 +88,59 @@ public class Semi_Marathon {
 		Semi_Marathon semiMarathon = new Semi_Marathon();
 	}
 
+	public void ouvrir(String actionCommand) {
+		switch(actionCommand)
+		{
+			case VueMenuUtilisateur.PARTENAIRES :
+				JFrame fenetreTmp = new JFrame(VueMenuUtilisateur.PARTENAIRES);
+				fenetreTmp.setSize(300, 600);
+				fenetreTmp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				fenetreTmp.add(new VuePartenaires(partenaires, this));
+				fenetreTmp.setVisible(true);
+				fenetres.add(fenetreTmp);
+			break;
+		}
+	}
+	
 	public ArrayList<Partenaire> getPartenaires()
 	{ return partenaires; }
 	
 	public ArrayList<Coureur> getCoureur()
 	{ return coureurs; }
-	
 
 	public JFrame getFrame()
-	{ return fenetre; }
+	{ return fenetres.get(0); }
 	
 	public void refresh()
-	{ fenetre.repaint(); fenetre.setVisible(true); }
+	{ fenetres.get(0).repaint(); fenetres.get(0).setVisible(true); }
 
 	public ArrayList<Rue> getRues()
 	{ return rues; }
+	
+	public String getVille()
+	{ return ville; }
+
+	public String getDate() {
+		String dateFormate = date.getDate() + "/" + date.getMonth() + "/" + date.getYear();
+		
+		return dateFormate;
+	}
+
+	public String getDistance() {
+		return Float.toString(longueur);
+	}
+
+	public String getNbInscrits() {
+		return Integer.toString(coureurs.size());
+	}
+
+	public String getNbMaxCoureur() {
+		return Integer.toString(nbMaxPart);
+	}
 
 	public void setSize(int x, int y)
 	{
-		fenetre.setSize(x, y);
+		fenetres.get(0).setSize(x, y);
 	}
 	
 }
