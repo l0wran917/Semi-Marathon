@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import modele.Semi_Marathon;
+
 public class VueAdmin extends JPanel implements ActionListener {
 
 	private JButton inscrire;
@@ -18,13 +20,17 @@ public class VueAdmin extends JPanel implements ActionListener {
 	private JButton institution;
 	private JButton modifInfos;
 	
-	public VueAdmin()
+	private Semi_Marathon semiMarathon;
+	
+	public VueAdmin(Semi_Marathon semiMarathon)
 	{
+		this.semiMarathon = semiMarathon;
+		
 		this.setLayout(new BorderLayout());
 		
 		inscrire = new JButton("Inscrire");
 		inscrire.addActionListener(this);
-		inscrire.setActionCommand("inscrire");
+		inscrire.setActionCommand(VueMenuUtilisateur.INSCRIPTION);
 		
 		retraitDossard = new JButton("<html><center>Valider retrait<br>dossard</center></html>");
 		retraitDossard.addActionListener(this);
@@ -103,7 +109,12 @@ public class VueAdmin extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(e.getActionCommand());
+		switch(e.getActionCommand())
+		{
+			case VueMenuUtilisateur.INSCRIPTION : 
+				semiMarathon.ouvrir(VueMenuUtilisateur.INSCRIPTION );
+			break;
+		}
 	}
 	
 }

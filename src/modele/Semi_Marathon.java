@@ -13,6 +13,7 @@ import vue.VueInscriptionPDF;
 import vue.VueInscrits;
 import vue.VueMdpAdmin;
 import vue.VueMenuUtilisateur;
+import vue.VueModifInfos;
 import vue.VuePartenaires;
 import vue.VuePrecisionsParcours;
 import vue.VueResultats;
@@ -84,7 +85,8 @@ public class Semi_Marathon{
 		for(int i=1; i < 40; i++) // Ajout de rues pour test
 			rues.add(new Rue("Rue du terter", i));
 		
-		fenetres.get(0).add(new VueMenuUtilisateur(this));
+		fenetres.get(0).setSize(410, 275);
+		fenetres.get(0).add(new VueModifInfos());
 
 		fenetres.get(0).setVisible(true);
 	}
@@ -136,7 +138,7 @@ public class Semi_Marathon{
 			case VueMenuUtilisateur.ADMIN :
 				fenetreTmp.setSize(500, 250);
 				fenetreTmp.setResizable(true);
-				fenetreTmp.add(new VueAdmin());
+				fenetreTmp.add(new VueAdmin(this));
 			break;
 			default:
 				fenetreTmp.setVisible(false); // Si aucune action reconnu, on affiche pas fenetre
