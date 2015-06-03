@@ -28,7 +28,6 @@ public class VueMdpAdmin extends JPanel implements ActionListener {
 	public VueMdpAdmin(Semi_Marathon semiMarathon)
 	{
 		// 290, 75
-		System.err.println("mdp");
 		this.semiMarathon = semiMarathon;
 		
 		this.setLayout(new BorderLayout());

@@ -81,7 +81,6 @@ public class Semi_Marathon{
 			rues.add(new Rue("Rue du terter", i));
 	
 		
-
 		fenetres.get(0).add(new VueMenuUtilisateur(this));
 				
 		fenetres.get(0).setVisible(true);
@@ -128,7 +127,7 @@ public class Semi_Marathon{
 				fenetreTmp.add(new VueMdpAdmin(this));
 			break;
 			case VueMenuUtilisateur.ADMIN :
-				fenetreTmp.setSize(500, 500);
+				fenetreTmp.setSize(500, 250);
 				fenetreTmp.setResizable(true);
 				fenetreTmp.add(new VueAdmin());
 			break;
