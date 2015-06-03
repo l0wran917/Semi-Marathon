@@ -196,5 +196,26 @@ public class Semi_Marathon{
 	{
 		fenetres.get(0).setSize(x, y);
 	}
+
+	public Ecole_Entreprise getInstitution(String institution) {
+		Ecole_Entreprise institutionRecherche = null;
+		
+		int i = 0;
+		while(i<institutions.size() && institutions.get(i).getNom() != institution)
+		{ i++; }
+		
+		if(i >= institutions.size())
+			i--;
+		
+		if(institutions.get(i).getNom() == institution)
+			institutionRecherche = institutions.get(i);
+		
+		return institutionRecherche;
+	}
+
+	public void ajoutCoureur(Coureur coureurTmp) {
+		coureurs.add(coureurTmp);
+		fenetres.get(0).repaint();
+	}
 	
 }

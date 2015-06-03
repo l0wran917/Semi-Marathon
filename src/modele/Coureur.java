@@ -42,7 +42,7 @@ public class Coureur {
 	
 	
 	private ArrayList<ChronometragePoint> chronos;
-	private Ecole_Entreprise institutions; // 0..1
+	private Ecole_Entreprise institution; // 0..1
 	private TypeDossard typeDossard;
 	
 	
@@ -59,6 +59,26 @@ public class Coureur {
 		position = 1;
 		categorie = new Categorie("Cadet", "CA", 1995, 2015);
 		
+	}
+	
+	public Coureur(String nom, String prenom, char sexe, Date dateNaiss, String adresse, int cp, 
+			String ville, String pays, String nationalite, int tel, String mail, String club, int license,
+			Ecole_Entreprise institution)
+	{
+		this.nom = nom;
+		this.prenom = prenom;
+		this.sexe = sexe;
+		this.dateNaiss = dateNaiss;
+		this.adresse = adresse;
+		this.codePostal = cp;
+		this.ville = ville;
+		this.pays = pays;
+		this.nationalite = nationalite;
+		this.tel = tel;
+		this.email = mail;
+		this.club = club;
+		this.numLicense = license;
+		this.institution = institution;
 	}
 	
 	public int getNumDossard() 

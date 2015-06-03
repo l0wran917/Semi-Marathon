@@ -6,12 +6,14 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,7 +21,10 @@ import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.text.MaskFormatter;
 
+import modele.Coureur;
+import modele.Ecole_Entreprise;
 import modele.Semi_Marathon;
 
 @SuppressWarnings("serial")
@@ -77,6 +82,24 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		
 		infosPerso.setLayout(new GridLayout(8,4));
 		
+		
+		MaskFormatter masqueDate = null;
+		MaskFormatter masqueCP = null;
+		MaskFormatter masqueTelephone = null;
+		MaskFormatter masqueNumCB = null;
+		MaskFormatter masqueDateCB = null;
+		MaskFormatter masqueCrypCB = null;
+		try {
+			masqueDate = new MaskFormatter("##/##/####");
+			masqueCP = new MaskFormatter("#####");
+			masqueTelephone = new MaskFormatter("## ## ## ## ##");
+			masqueNumCB = new MaskFormatter("#### #### #### ####");
+			masqueDateCB = new MaskFormatter("##");
+			masqueCrypCB = new MaskFormatter("###");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
 		nom = new JTextField();
 		infosPerso.add(new JLabel("Nom :", SwingConstants.CENTER));
 		infosPerso.add(nom);
@@ -90,7 +113,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		infosPerso.add(new JLabel("Sexe :", SwingConstants.CENTER));
 		infosPerso.add(sex);
 		
-		anneeNaissance =  new JTextField();
+		anneeNaissance =  new JFormattedTextField(masqueDate);
 		infosPerso.add(new JLabel("Date Naissance :", SwingConstants.CENTER));
 		infosPerso.add(anneeNaissance);
 		
@@ -98,7 +121,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		infosPerso.add(new JLabel("Adresse :", SwingConstants.CENTER));
 		infosPerso.add(adresse);
 		
-		codePost = new JTextField();
+		codePost = new JFormattedTextField(masqueCP);
 		infosPerso.add(new JLabel("Code Postal :", SwingConstants.CENTER));
 		infosPerso.add(codePost);
 		
@@ -118,7 +141,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		infosPerso.add(new JLabel("Nationalite :", SwingConstants.CENTER));
 		infosPerso.add(nationalite);
 		
-		telephone = new JTextField();
+		telephone = new JFormattedTextField(masqueTelephone);
 		infosPerso.add(new JLabel("Telephone :", SwingConstants.CENTER));
 		infosPerso.add(telephone);
 		
@@ -168,21 +191,21 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		infosPaiement = new JPanel();
 		infosPaiement.setLayout(new GridLayout(3, 4));
 		
-		numCB = new JTextField();
+		numCB = new JFormattedTextField(masqueNumCB);
 		infosPaiement.add(new JLabel("Numero carte credit :", SwingConstants.CENTER));
 		infosPaiement.add(numCB);
 		infosPaiement.add(new JLabel()); // Pour cadrage
 		infosPaiement.add(new JLabel()); // Pour cadrage
 		
-		moisCB = new JTextField();
+		moisCB = new JFormattedTextField(masqueDateCB);
 		infosPaiement.add(new JLabel("Mois :", SwingConstants.CENTER));
 		infosPaiement.add(moisCB);
 		
-		anneeCB = new JTextField();
+		anneeCB = new JFormattedTextField(masqueDateCB);
 		infosPaiement.add(new JLabel("Annee :", SwingConstants.CENTER));
 		infosPaiement.add(anneeCB);
 		
-		criptoCB = new JTextField();
+		criptoCB = new JFormattedTextField(masqueCrypCB);
 		infosPaiement.add(new JLabel("3 derniers chiffres :", SwingConstants.CENTER));
 		infosPaiement.add(criptoCB);
 		infosPaiement.add(new JLabel()); // Pour cadrage
@@ -256,7 +279,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		JPanel pnlDate = new JPanel();
 		pnlDate.setLayout(new GridLayout(1,2));
 		
-		dateInscription = new JTextField();
+		dateInscription = new JFormattedTextField(masqueDate);
 		pnlDate.add(new JLabel("Date Inscription :", SwingConstants.CENTER));
 		pnlDate.add(dateInscription);
 					
@@ -289,7 +312,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 						infosPerso.getComponent(i) != license && infosPerso.getComponent(i) != entreprise &&
 						infosPerso.getComponent(i) != ecole) // Champs facultatif
 				{
-					if(((JTextField) infosPerso.getComponent(i)).getText().length() == 0)
+					if(((JTextField) infosPerso.getComponent(i)).getText().length() == 0 || ((JTextField) infosPerso.getComponent(i)).getText().charAt(0) == ' ')
 					{
 						metLblPrecedentCouleur(infosPerso, infosPerso.getComponent(i), "red");
 						infoIncorrect = true;
@@ -319,7 +342,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 			{
 				if(infosPaiement.getComponent(i) instanceof JTextField)
 				{
-					if(((JTextField) infosPaiement.getComponent(i)).getText().length() == 0)
+					if(((JTextField) infosPaiement.getComponent(i)).getText().length() == 0 || ((JTextField) infosPaiement.getComponent(i)).getText().charAt(0) == ' ')
 					{
 						metLblPrecedentCouleur(infosPaiement, infosPaiement.getComponent(i), "red");
 						infoIncorrect = true;
@@ -370,7 +393,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		}
 		
 		JPanel pnlCenterSas = (JPanel) ((Container) sasDepart.getComponents()[0]).getComponents()[2];
-		if(dateInscription.getText().length() == 0)
+		if(dateInscription.getText().charAt(0) == ' ')
 		{
 			infoIncorrect = true;
 			metLblPrecedentCouleur(pnlCenterSas, dateInscription, "red");
@@ -446,7 +469,29 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 					JOptionPane.showMessageDialog(this, "Information manquante ou incorrecte",
 						"Erreur", JOptionPane.WARNING_MESSAGE);
 				else
-					JOptionPane.showMessageDialog(this, "Ok");
+				{
+					String institution;
+					if(entreprise.getText().length() != 0)
+						institution = entreprise.getText();
+					else
+						institution = ecole.getText();
+					
+					Ecole_Entreprise institutionTmp = semiMarathon.getInstitution(institution);
+					
+					Date dateNaissance = convertiStringDate(anneeNaissance.getText());
+					
+					String telephoneSansEspace = telephone.getText().replace(" ", "");
+					
+					Coureur coureurTmp = new Coureur(nom.getText(), prenom.getText(), 
+						sex.getItemAt(sex.getSelectedIndex()).charAt(0),
+						dateNaissance, adresse.getText(), Integer.parseInt(codePost.getText()), 
+						ville.getText(),
+						pays.getText(), nationalite.getText(), Integer.parseInt(telephoneSansEspace), 
+						mail.getText(),
+						club.getText(), Integer.parseInt(license.getText()), institutionTmp);
+					
+					semiMarathon.ajoutCoureur(coureurTmp);
+				}
 			}
 		}
 		
@@ -460,6 +505,40 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 			
 			this.repaint();
 		}
+	}
+	
+	private Date convertiStringDate(String date)
+	{
+		String jour = "";
+		String mois = "";
+		String annee= "";
+		
+		int i=0;
+		while(date.charAt(i) != '/' && i < date.length())
+		{ 
+			jour += date.charAt(i);
+			i++; 
+		}
+		i++;
+		
+		while(date.charAt(i) != '/' && i < date.length())
+		{ 
+			mois += date.charAt(i);
+			i++; 
+		}
+		i++;
+		
+		while(i < date.length()-1)
+		{ 
+			System.err.println(annee + " - " + i);
+			i++; 
+		}
+		i++;
+		
+		Date dateReturn = new Date(Integer.parseInt(annee), Integer.parseInt(mois), Integer.parseInt(jour));
+		
+		return dateReturn;	
+		
 	}
 
 }
