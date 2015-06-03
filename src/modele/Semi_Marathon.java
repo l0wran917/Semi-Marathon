@@ -4,7 +4,9 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import vue.VueAdmin;
 import vue.VueInscriptionPDF;
@@ -14,6 +16,7 @@ import vue.VueMenuUtilisateur;
 import vue.VuePartenaires;
 import vue.VuePrecisionsParcours;
 import vue.VueResultats;
+
 
 public class Semi_Marathon{
 	
@@ -69,20 +72,20 @@ public class Semi_Marathon{
 		horairesRemiseDossard[2] = new String("8/03 7-9");
 		
 		partenaires = new ArrayList<Partenaire>();	
+		JLabel logo = new JLabel();
 		for(int i=1; i < 4; i++) // Ajout de partenaires pour test
-			partenaires.add(new Partenaire("Partenaire " + Integer.toString(i), "Mail " + Integer.toString(i)));
+			partenaires.add(new Partenaire("Partenaire " + Integer.toString(i), "Mail " + Integer.toString(i), new JLabel(new ImageIcon("assets/logoApple.png"))));
 	
 		coureurs = new ArrayList<Coureur>();
 		for(int i=1; i < 40; i++) // Ajout de partenaires pour test
 			coureurs.add(new Coureur("Nom", "Prenom", 1));
 		
 		rues = new ArrayList<Rue>();
-		for(int i=1; i < 5; i++) // Ajout de rues pour test
+		for(int i=1; i < 40; i++) // Ajout de rues pour test
 			rues.add(new Rue("Rue du terter", i));
-	
 		
 		fenetres.get(0).add(new VueMenuUtilisateur(this));
-				
+
 		fenetres.get(0).setVisible(true);
 	}
 	
@@ -121,6 +124,10 @@ public class Semi_Marathon{
 			case VueMenuUtilisateur.RESULTATS :
 				fenetreTmp.setSize(700, 480);
 				fenetreTmp.add(new VueResultats());
+				/*
+ 				fenetreTmp.setSize(1200, 600);
+				fenetreTmp.add(new VueRechercheResultat(coureurs, this)); 
+				 */
 			break;
 			case VueMenuUtilisateur.ADMIN_MDP :
 				fenetreTmp.setSize(300, 90);

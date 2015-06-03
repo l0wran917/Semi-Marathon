@@ -54,7 +54,6 @@ public class VueInscrits extends JPanel{
 		
 		for(JLabel label : lblInscrits) // on traite chaque labels 
 		{
-			label.setHorizontalTextPosition(0);
 			label.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
 			panelVueScroll.add(label);
 		}

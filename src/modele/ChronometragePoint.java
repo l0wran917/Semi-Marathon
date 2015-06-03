@@ -15,4 +15,13 @@ public class ChronometragePoint {
 		this.coureur = coureur;
 	}
 	
+	public ChronometragePoint(Time heure , Coureur coureur) // sans point controle pour tester 
+	{
+		this.heure = heure;
+		this.coureur = coureur;
+	}
+	
+	public Time getHeure()
+	{ return heure; }
+	
 }
