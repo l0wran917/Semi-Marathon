@@ -11,6 +11,7 @@ import vue.VueInscrits;
 import vue.VueMenuUtilisateur;
 import vue.VuePartenaires;
 import vue.VuePrecisionsParcours;
+import vue.VueResultats;
 
 public class Semi_Marathon{
 	
@@ -47,7 +48,7 @@ public class Semi_Marathon{
 		fenetres.add(new JFrame("Semi Marathon"));
 		fenetres.get(0).setSize(800, 600);
 		fenetres.get(0).setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenetres.get(0).setResizable(false);
+		//fenetres.get(0).setResizable(false);
 			
 		ville = "Paris";
 		date = new Date(2015, 3, 8); // 8 Mars 2015
@@ -80,14 +81,13 @@ public class Semi_Marathon{
 		
 
 		fenetres.get(0).add(new VueMenuUtilisateur(this));
-		
-
-		
+				
 		fenetres.get(0).setVisible(true);
 	}
 	
 	public static void main(String args[])
 	{
+		@SuppressWarnings("unused")
 		Semi_Marathon semiMarathon = new Semi_Marathon();
 	}
 
@@ -117,6 +117,10 @@ public class Semi_Marathon{
 				fenetreTmp.setSize(800, 600);
 				fenetreTmp.add(new VueInscriptionPDF(this));
 			break;
+			case VueMenuUtilisateur.RESULTATS :
+				fenetreTmp.setSize(700, 480);
+				fenetreTmp.add(new VueResultats());
+			break;
 			default:
 				fenetreTmp.setVisible(false); // Si aucune action reconnu, on affiche pas fenetre
 			break;
@@ -129,21 +133,6 @@ public class Semi_Marathon{
 	
 	public ArrayList<Coureur> getCoureur()
 	{ return coureurs; }
-
-	public JFrame getFrame(String nomFenetre)
-	{ 
-		int i = 0;
-		while(i<fenetres.size() && fenetres.get(i).getTitle() != nomFenetre)
-		{ i++; }
-		
-		if(fenetres.get(i).getTitle() == nomFenetre)
-		{
-			System.out.println("test" + i);
-			return fenetres.get(i);
-		}
-		else
-			return new JFrame();
-	}
 	
 	public void refresh()
 	{ fenetres.get(0).repaint(); fenetres.get(0).setVisible(true); }

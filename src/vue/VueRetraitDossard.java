@@ -60,7 +60,7 @@ public class VueRetraitDossard extends JPanel implements ActionListener{
 		{
 			if(((JButton)e.getSource()).getActionCommand() == "valider")
 			{
-				JOptionPane.showMessageDialog(semiMarathon.getFrame("Retrait Dossard"), "Ok");
+				JOptionPane.showMessageDialog(this, "Ok");
 			}
 		}
 	}
