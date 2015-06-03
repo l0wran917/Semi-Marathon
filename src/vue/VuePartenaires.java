@@ -38,9 +38,8 @@ public class VuePartenaires extends JPanel{
 		lblPartenaires.add(new JLabel("Email", SwingConstants.CENTER));
 		lblPartenaires.add(new JLabel("Logo", SwingConstants.CENTER));
 		Font boldFont = new Font(lblPartenaires.get(0).getFont().getFontName() , Font.BOLD, lblPartenaires.get(0).getFont().getSize());
-				
-		for(int i = 0; i < lblPartenaires.size(); i++) // on met en gras les polices des 4 premiers labels
 
+		for(int i = 0; i < lblPartenaires.size(); i++) // on met en gras les polices des 4 premiers labels
 		{
 			lblPartenaires.get(i).setFont(boldFont);
 		}

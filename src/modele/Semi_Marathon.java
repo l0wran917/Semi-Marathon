@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
+import vue.VueMenuUtilisateur;
 import vue.VuePartenaires;
 
 public class Semi_Marathon{
