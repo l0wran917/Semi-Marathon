@@ -32,10 +32,11 @@ public class VueMenuUtilisateur extends JPanel implements ActionListener {
 	
 	public static final String INSCRIPTION = "Inscription";
 	public static final String PARCOURS = "Parcours";
-	public static final String ADMIN = "Admin";
 	public static final String RESULTATS = "Resultats";
 	public static final String INSCRITS = "Inscrits";
 	public static final String PARTENAIRES = "Partenaires";
+	public static final String ADMIN_MDP = "Connexion administrateur";
+	public static final String ADMIN = "Administration";
 	
 	public VueMenuUtilisateur(Semi_Marathon semiMarathon)
 	{
@@ -84,7 +85,7 @@ public class VueMenuUtilisateur extends JPanel implements ActionListener {
 		
 		admin = new JButton("Admin");
 		admin.addActionListener(this);
-		admin.setActionCommand(ADMIN);
+		admin.setActionCommand(ADMIN_MDP);
 		
 		resultats = new JButton("Resultats");
 		resultats.addActionListener(this);
