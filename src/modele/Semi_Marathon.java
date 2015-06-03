@@ -43,7 +43,6 @@ public class Semi_Marathon{
 	
 	public Semi_Marathon()
 	{
-		
 		fenetres = new ArrayList<JFrame>();
 		fenetres.add(new JFrame("Semi Marathon"));
 		fenetres.get(0).setSize(800, 600);
@@ -131,8 +130,20 @@ public class Semi_Marathon{
 	public ArrayList<Coureur> getCoureur()
 	{ return coureurs; }
 
-	public JFrame getFrame()
-	{ return fenetres.get(0); }
+	public JFrame getFrame(String nomFenetre)
+	{ 
+		int i = 0;
+		while(i<fenetres.size() && fenetres.get(i).getTitle() != nomFenetre)
+		{ i++; }
+		
+		if(fenetres.get(i).getTitle() == nomFenetre)
+		{
+			System.out.println("test" + i);
+			return fenetres.get(i);
+		}
+		else
+			return new JFrame();
+	}
 	
 	public void refresh()
 	{ fenetres.get(0).repaint(); fenetres.get(0).setVisible(true); }

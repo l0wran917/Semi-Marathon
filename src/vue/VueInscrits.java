@@ -20,7 +20,6 @@ public class VueInscrits extends JPanel{
 	
 	private ArrayList<JLabel> lblInscrits;
 	private JPanel panelVueScroll;
-	private JButton boutonQuitter;
 	
 	public VueInscrits(ArrayList<Coureur> inscrits, Semi_Marathon semi_marathon)
 	{
@@ -29,7 +28,6 @@ public class VueInscrits extends JPanel{
 		
 		lblInscrits = new ArrayList<JLabel>();
 		panelVueScroll = new JPanel();
-		boutonQuitter = new JButton("Quitter");
 		
 		this.setLayout(new BorderLayout());
 		// nbInscrits ligne + 1 pour les titres et 1 colonne 
@@ -62,6 +60,5 @@ public class VueInscrits extends JPanel{
 		}
 		
 		this.add(new JScrollPane(panelVueScroll), BorderLayout.CENTER); // Le bouton en haut de la fenetre
-		this.add(boutonQuitter, BorderLayout.NORTH); // la liste au milieu
 	}
 }

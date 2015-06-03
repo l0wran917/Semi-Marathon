@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -273,7 +274,6 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		tabs.addTab("Sas Depart", sasDepart);
 		
 		this.add(tabs);
-		
 	}
 	
 	public boolean erreurDonneesSaisie()
@@ -408,7 +408,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 						"</span></html>");
 			}
 		}
-		semiMarathon.refresh();
+		this.repaint();
 	}
 	
 	public void metRadioBtnCouleur(JRadioButton radio, String couleur)
@@ -430,7 +430,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 					"</span></html>");
 		}
 		
-		semiMarathon.refresh();
+		this.repaint();
 	}
 
 	
@@ -443,10 +443,10 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 			if(btn.getActionCommand() == "valider")
 			{
 				if(erreurDonneesSaisie())
-					JOptionPane.showMessageDialog(semiMarathon.getFrame(), "Information manquante ou incorrecte",
+					JOptionPane.showMessageDialog(this, "Information manquante ou incorrecte",
 						"Erreur", JOptionPane.WARNING_MESSAGE);
 				else
-					JOptionPane.showMessageDialog(semiMarathon.getFrame(), "Ok");
+					JOptionPane.showMessageDialog(this, "Ok");
 			}
 		}
 		
@@ -458,7 +458,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 			else if(e.getActionCommand() == "cheque")
 				modalitePaiement.remove(infosPaiement);
 			
-			semiMarathon.refresh();
+			this.repaint();
 		}
 	}
 
