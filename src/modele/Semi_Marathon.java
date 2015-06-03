@@ -95,7 +95,7 @@ public class Semi_Marathon{
 			case VueMenuUtilisateur.PARTENAIRES :
 				JFrame fenetreTmp = new JFrame(VueMenuUtilisateur.PARTENAIRES);
 				fenetreTmp.setSize(300, 600);
-				fenetreTmp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				fenetreTmp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				fenetreTmp.add(new VuePartenaires(partenaires, this));
 				fenetreTmp.setVisible(true);
 				fenetres.add(fenetreTmp);
