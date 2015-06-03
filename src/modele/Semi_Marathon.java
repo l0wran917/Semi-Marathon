@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
+import vue.VueInscriptionPDF;
 import vue.VueInscrits;
 import vue.VueMenuUtilisateur;
 import vue.VuePartenaires;
@@ -112,6 +113,13 @@ public class Semi_Marathon{
 			case VueMenuUtilisateur.PARCOURS :
 				fenetreTmp.setSize(300, 600);
 				fenetreTmp.add(new VuePrecisionsParcours(rues));
+			break;
+			case VueMenuUtilisateur.INSCRIPTION :
+				fenetreTmp.setSize(800, 600);
+				fenetreTmp.add(new VueInscriptionPDF(this));
+			break;
+			default:
+				fenetreTmp.setVisible(false); // Si aucune action reconnu, on affiche pas fenetre
 			break;
 		}
 		fenetres.add(fenetreTmp);
