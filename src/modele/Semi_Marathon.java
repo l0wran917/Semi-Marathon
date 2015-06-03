@@ -148,6 +148,10 @@ public class Semi_Marathon{
 				fenetreTmp.setSize(410,275);
 				fenetreTmp.add(new VueModifInfos());
 			break;
+			case VueAdmin.INSTITUTIONS :
+				fenetreTmp.setSize(300, 600);
+				fenetreTmp.add(new VueEcoleEntreprise(institutions, this));
+			break;
 			default:
 				fenetreTmp.setVisible(false); // Si aucune action reconnu, on affiche pas fenetre
 			break;
