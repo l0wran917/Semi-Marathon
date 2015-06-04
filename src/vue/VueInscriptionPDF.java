@@ -481,6 +481,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 					Date dateNaissance = convertiStringDate(anneeNaissance.getText());
 					
 					String telephoneSansEspace = telephone.getText().replace(" ", "");
+					String numCBSansEspace = numCB.getText().replace(" ", "");
 					
 					Coureur coureurTmp = new Coureur(nom.getText(), prenom.getText(), 
 						sex.getItemAt(sex.getSelectedIndex()).charAt(0),
@@ -489,6 +490,15 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 						pays.getText(), nationalite.getText(), Integer.parseInt(telephoneSansEspace), 
 						mail.getText(),
 						club.getText(), Integer.parseInt(license.getText()), institutionTmp);
+					
+					if(paiementCheque.isSelected())
+						coureurTmp.setPaiement("cheque");
+					else if(paiementCB.isSelected())
+						coureurTmp.setPaiement("cb", Long.parseLong(numCBSansEspace), 
+								Integer.parseInt(moisCB.getText()), Integer.parseInt(anneeCB.getText()),
+								Integer.parseInt(criptoCB.getText()));
+						
+					
 					
 					semiMarathon.ajoutCoureur(coureurTmp);
 				}

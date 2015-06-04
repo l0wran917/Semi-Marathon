@@ -26,7 +26,7 @@ public class Coureur {
 	private int numLicense;
 	private boolean licenseCopie;
 	private String typePaiement;
-	private int numCB;
+	private long numCB;
 	private int CB_DerniesChiffres;
 	private int moisFinCB;
 	private int anneeFinCB;
@@ -118,6 +118,19 @@ public class Coureur {
 		heure += chronos.get(chronos.size()-1).getHeure().getSeconds();
 		
 		return heure;
+	}
+
+	public void setPaiement(String typePaiement) {
+		this.typePaiement = typePaiement;
+		
+	}
+
+	public void setPaiement(String typePaiement, long numCB, int moisCB, int anneeCB, int criptoCB) {
+		this.typePaiement = "cb";
+		this.numCB = numCB;
+		this.moisFinCB = moisCB;
+		this.anneeFinCB = anneeCB;
+		this.CB_DerniesChiffres = criptoCB;
 	}
 	
 }
