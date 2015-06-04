@@ -34,8 +34,9 @@ public class VueRechercheResultat extends JPanel {
 		
 		this.setLayout(new BorderLayout());
 		// nbInscrits ligne + 1 pour les titres et 1 colonne 
-		panelVueScroll.setLayout(new GridLayout(inscrits.size() + 1, 8));
+		panelVueScroll.setLayout(new GridLayout(inscrits.size() + 1, 10));
 		
+		lblInscrits.add(new JLabel("Sexe", SwingConstants.CENTER));
 		lblInscrits.add(new JLabel("Position", SwingConstants.CENTER));
 		lblInscrits.add(new JLabel("Catégorie", SwingConstants.CENTER));
 		lblInscrits.add(new JLabel("Numéro Dossard", SwingConstants.CENTER));
@@ -44,15 +45,17 @@ public class VueRechercheResultat extends JPanel {
 		lblInscrits.add(new JLabel("Date Naissance", SwingConstants.CENTER));
 		lblInscrits.add(new JLabel("HeureLigneDépart", SwingConstants.CENTER));
 		lblInscrits.add(new JLabel("HeureLigneArrivée", SwingConstants.CENTER));
+		lblInscrits.add(new JLabel("Temps Réel", SwingConstants.CENTER));
 		Font boldFont = new Font(lblInscrits.get(0).getFont().getFontName() , Font.BOLD, lblInscrits.get(0).getFont().getSize());
 		
-		for(int i = 0; i < 8; i++) // on met en gras les polices des 4 premiers labels
+		for(int i = 0; i < 10; i++) // on met en gras les polices des 4 premiers labels
 		{
 			lblInscrits.get(i).setFont(boldFont);
 		}
 
 		for(Coureur coureur : inscrits) // on sauvegarde les labels au cas ou
 		{
+			lblInscrits.add(new JLabel("" + coureur.getSexe(), SwingConstants.CENTER));
 			lblInscrits.add(new JLabel(Integer.toString(coureur.getPosition()), SwingConstants.CENTER));
 			lblInscrits.add(new JLabel(coureur.getCodeCategorie(), SwingConstants.CENTER));
 			lblInscrits.add(new JLabel(Integer.toString(coureur.getNumDossard()), SwingConstants.CENTER));
@@ -61,6 +64,7 @@ public class VueRechercheResultat extends JPanel {
 			lblInscrits.add(new JLabel("" + coureur.getDateNaiss(), SwingConstants.CENTER)); // sans les "", ne fonctionne pas
 			lblInscrits.add(new JLabel(coureur.getHeureLigneDepart(), SwingConstants.CENTER));
 			lblInscrits.add(new JLabel(coureur.getHeureLigneArrivee(), SwingConstants.CENTER));
+			lblInscrits.add(new JLabel(coureur.getTempsReel(), SwingConstants.CENTER));
 			
 		}
 		

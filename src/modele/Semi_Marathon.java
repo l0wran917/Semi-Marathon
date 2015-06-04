@@ -156,7 +156,7 @@ public class Semi_Marathon{
 			break;
 			case VueMenuUtilisateur.RESULTATS :
 				fenetreTmp.setSize(700, 480);
-				fenetreTmp.add(new VueResultats(coureurs));
+				fenetreTmp.add(new VueResultats(coureurs, this));
 			break;
 			case VueMenuUtilisateur.ADMIN_MDP :
 				fenetreTmp.setSize(300, 90);
@@ -181,6 +181,21 @@ public class Semi_Marathon{
 			default:
 				fenetreTmp.setVisible(false); // Si aucune action reconnu, on affiche pas fenetre
 			break;
+		}
+		fenetres.add(fenetreTmp);
+	}
+	
+	public void ouvrir(String actionCommand, ArrayList<Coureur> classement) {
+		
+		JFrame fenetreTmp = new JFrame(actionCommand);
+		fenetreTmp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		fenetreTmp.setResizable(false);
+		fenetreTmp.setVisible(true);
+		
+		if(actionCommand == VueMenuUtilisateur.CLASSEMENT)
+		{
+			fenetreTmp.setSize(1350, 480);
+			fenetreTmp.add(new VueRechercheResultat(classement, this));
 		}
 		fenetres.add(fenetreTmp);
 	}

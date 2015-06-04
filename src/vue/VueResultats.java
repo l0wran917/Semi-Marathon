@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import modele.Coureur;
+import modele.Semi_Marathon;
 
 public class VueResultats extends JPanel implements ActionListener{
 
@@ -23,15 +25,16 @@ public class VueResultats extends JPanel implements ActionListener{
 	private JTextField nom;
 	private JTextField num;
 	private JTextField pos;
-	
-	private char sexeCoureurs; // H, F
+
 	private ArrayList<Coureur> coureurs;
+	private Semi_Marathon semiMarathon;
 	
-	public VueResultats(ArrayList<Coureur> coureurs)
+	public VueResultats(ArrayList<Coureur> coureurs, Semi_Marathon semiMarathon)
 	{
+		
+		this.semiMarathon = semiMarathon;
 		this.setLayout(new GridLayout(4,1));
 		
-		sexeCoureurs = 'H'; // on initialise a homme
 		this.coureurs = coureurs;
 		
 		JPanel troisBtn = new JPanel();
@@ -44,7 +47,7 @@ public class VueResultats extends JPanel implements ActionListener{
 		btnClassementH.addActionListener(this);
 		btnClassementH.setActionCommand("homme");
 		
-		btnClassementF = new JButton("Femme");
+		btnClassementF = new JButton("Femme"); 
 		btnClassementF.addActionListener(this);
 		btnClassementF.setActionCommand("femme");
 		
@@ -138,22 +141,31 @@ public class VueResultats extends JPanel implements ActionListener{
 		switch(e.getActionCommand())
 		{
 			case "homme" :
-				sexeCoureurs = 'H';
+				semiMarathon.ouvrir("Classement", chercherCoureur('H'));
 			break;
 			case "femme" :
-				sexeCoureurs = 'F';
+				semiMarathon.ouvrir("Classement", chercherCoureur('F'));
 			break;
 			case "general" :
-				
+				semiMarathon.ouvrir("Classement", chercherCoureur());
 			break;
 			case "nom" :
-				
+				semiMarathon.ouvrir("Classement", chercherCoureur(nom.getText())); // ne marche pas ??!!
+				System.out.println(nom.getText());
 			break;
 			case "num" :
-				
+				if(isNumeric(num.getText()))
+				{
+					semiMarathon.ouvrir("Classement", chercherCoureur(Integer.parseInt(num.getText())));
+					System.out.println(Integer.parseInt(num.getText()));
+				}
 			break;
 			case "pos" :
-				
+				if(isNumeric(pos.getText()))
+				{
+					semiMarathon.ouvrir("Classement", chercherCoureurPos(Integer.parseInt(pos.getText())));
+					System.out.println(Integer.parseInt(pos.getText()));
+				}
 			break;
 			default:
 				// Erreur 
@@ -161,59 +173,30 @@ public class VueResultats extends JPanel implements ActionListener{
 		}
 	}
 	
-	public ArrayList<Coureur> chercherCoureur(String nom, char sexe)
+	public ArrayList<Coureur> chercherCoureur(char sexe) 
 	{
 		ArrayList<Coureur> classementCoureurs = new ArrayList<Coureur>();
 		
 		for(Coureur coureur : coureurs)
 		{
-			if(coureur.getSexe() == sexe && coureur.getNom() == nom)
+			if(coureur.getSexe() == sexe)
 			{
 				classementCoureurs.add(coureur);
 			}
 		}
+		
+		
 		return classementCoureurs;
 	}
 	
-	public ArrayList<Coureur> chercherCoureur(int num, char sexe)
+	public ArrayList<Coureur> chercherCoureur()
 	{
 		ArrayList<Coureur> classementCoureurs = new ArrayList<Coureur>();
 		
 		for(Coureur coureur : coureurs)
 		{
-			if(coureur.getSexe() == sexe && coureur.getNumDossard() == num)
-			{
-				classementCoureurs.add(coureur);
-			}
+			classementCoureurs.add(coureur);
 		}
-		return classementCoureurs;
-	}
-	
-	public ArrayList<Coureur> chercherCoureur(char sexe, int position)
-	{
-		ArrayList<Coureur> classementCoureurs = new ArrayList<Coureur>();
-		
-		for(Coureur coureur : coureurs)
-		{
-			if(coureur.getSexe() == sexe && coureur.getPosition() == position)
-			{
-				classementCoureurs.add(coureur);
-			}
-		}	
-		return classementCoureurs;
-	}
-	
-	public ArrayList<Coureur> chercherCoureur(int position)
-	{
-		ArrayList<Coureur> classementCoureurs = new ArrayList<Coureur>();
-		
-		for(Coureur coureur : coureurs)
-		{
-			if(coureur.getPosition() == position)
-			{
-				classementCoureurs.add(coureur);
-			}
-		}	
 		return classementCoureurs;
 	}
 	
@@ -223,14 +206,63 @@ public class VueResultats extends JPanel implements ActionListener{
 		
 		for(Coureur coureur : coureurs)
 		{
-			if(coureur.getNom() == nom)
-			{
+			if(coureur.getNom() == nom){
 				classementCoureurs.add(coureur);
 			}
-		}	
+			
+		}
 		return classementCoureurs;
 	}
 	
+	public ArrayList<Coureur> chercherCoureur(int num)
+	{
+		ArrayList<Coureur> classementCoureurs = new ArrayList<Coureur>();
+		
+		for(Coureur coureur : coureurs)
+		{
+			if(coureur.getNumDossard() == num){
+				classementCoureurs.add(coureur);
+			}
+			
+		}
+		return classementCoureurs;
+	}
+	
+	public ArrayList<Coureur> chercherCoureurPos(int position)
+	{
+		ArrayList<Coureur> classementCoureurs = new ArrayList<Coureur>();
+		
+		for(Coureur coureur : coureurs)
+		{
+			if(coureur.getPosition() == position){
+				classementCoureurs.add(coureur);
+			}
+			
+		}
+		return classementCoureurs;
+	}
+	
+	
+	public void trierTempsReel(ArrayList<Coureur> coureurs)
+	{
+		//Arrays.sort(coureurs);
+	}
+	
+	
+	public static boolean isNumeric(String str)
+	  {
+	    try
+	    {
+	      double d = Double.parseDouble(str);
+	    }
+	    catch(NumberFormatException nfe)
+	    {
+	      return false;
+	    }
+	    return true;
+	  }
+	
+
 	
 	
 }
