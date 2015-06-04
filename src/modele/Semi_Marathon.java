@@ -202,6 +202,11 @@ public class Semi_Marathon{
 			fenetreTmp.setSize(1350, 480);
 			fenetreTmp.add(new VueRechercheResultat(classement, this));
 		}
+		else if(actionCommand == VueMenuUtilisateur.CLASSEMENT_SEXE)
+		{
+			fenetreTmp.setSize(1500, 480);
+			fenetreTmp.add(new VueRechercheResultat(classement, this, new Boolean(true)));
+		}
 		fenetres.add(fenetreTmp);
 	}
 	
