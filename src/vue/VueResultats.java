@@ -10,6 +10,7 @@ import java.util.Collections;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -140,6 +141,9 @@ public class VueResultats extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
+		
+		ArrayList<Coureur> listRecherche;
+		
 		switch(e.getActionCommand())
 		{
 			case "homme" :
@@ -152,18 +156,34 @@ public class VueResultats extends JPanel implements ActionListener{
 				semiMarathon.ouvrir("Classement", chercherCoureur());
 			break;
 			case "nom" :
-				semiMarathon.ouvrir("Classement", chercherCoureur(nom.getText())); // ne marche pas ??!!
+				listRecherche = chercherCoureur(nom.getText());
+				
+				if(listRecherche.size() > 0)
+					semiMarathon.ouvrir("Classement", listRecherche);
+				else
+					JOptionPane.showMessageDialog(this, "Aucun coureur trouvé", "Aucun resultat", JOptionPane.INFORMATION_MESSAGE);
+		
 			break;
 			case "num" :
 				if(isNumeric(num.getText()))
 				{
-					semiMarathon.ouvrir("Classement", chercherCoureur(Integer.parseInt(num.getText())));
+					listRecherche = chercherCoureur(Integer.parseInt(num.getText()));
+					
+					if(listRecherche.size() > 0)
+						semiMarathon.ouvrir("Classement", listRecherche);
+					else
+						JOptionPane.showMessageDialog(this, "Aucun coureur trouvé", "Aucun resultat", JOptionPane.INFORMATION_MESSAGE);
 				}
 			break;
 			case "pos" :
 				if(isNumeric(pos.getText()))
-				{
-					semiMarathon.ouvrir("Classement", chercherCoureurPos(Integer.parseInt(pos.getText())));
+				{						
+					listRecherche = chercherCoureurPos(Integer.parseInt(pos.getText()));
+					
+					if(listRecherche.size() > 0)
+						semiMarathon.ouvrir("Classement", listRecherche);
+					else
+						JOptionPane.showMessageDialog(this, "Aucun coureur trouvé", "Aucun resultat", JOptionPane.INFORMATION_MESSAGE);
 				}
 			break;
 			default:

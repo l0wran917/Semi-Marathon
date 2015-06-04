@@ -246,7 +246,7 @@ public class Semi_Marathon{
 		
 		if(actionCommand == VueMenuUtilisateur.CLASSEMENT)
 		{
-			fenetreTmp.setSize(1350, 480);
+			fenetreTmp.setSize(1350, 250);
 			fenetreTmp.add(new VueRechercheResultat(classement, this));
 		}
 		else if(actionCommand == VueMenuUtilisateur.CLASSEMENT_SEXE)
