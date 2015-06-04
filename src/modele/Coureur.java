@@ -39,6 +39,9 @@ public class Coureur implements Comparable<Coureur> {
 	// TempsReel
 	
 	private String tempsReel;
+	int heureTempsReel;
+	int minutesTempsReel;
+	int secondesTempsReel;
 	
 	// position
 	private int position;
@@ -64,6 +67,7 @@ public class Coureur implements Comparable<Coureur> {
 	    sexe = 'H';
 	    
 	    tempsReel = getTempsReelAleatoire();
+	
 		
 		position = 1;
 		categorie = new Categorie("Cadet", "CA", 1995, 2015);
@@ -157,6 +161,7 @@ public class Coureur implements Comparable<Coureur> {
 		int minute = 0 + (int)(Math.random() * ((60 - 0) + 1));
 		int seconde = 0 + (int)(Math.random() * ((60 - 0) + 1));
 		
+		
 		if(heure == 2 && minute > 50)
 		{
 			minute = minute - 10;
@@ -165,6 +170,10 @@ public class Coureur implements Comparable<Coureur> {
 		{
 			seconde = 0;
 		}
+		
+		heureTempsReel = heure;
+		minutesTempsReel = minute;
+		secondesTempsReel = seconde;
 	
 		return Integer.toString(heure) + ":" + Integer.toString(minute) + ":" + Integer.toString(seconde);
 	}
@@ -193,8 +202,45 @@ public class Coureur implements Comparable<Coureur> {
 	@Override
 	public int compareTo(Coureur c)
 	{
-	    return (int)(this.getTempsReelDouble() - c.getTempsReelDouble());
+		int retour = 0;
+		
+		if(heureTempsReel < c.heureTempsReel)
+		{
+			retour =  -1;
+		}
+		else if(heureTempsReel > c.heureTempsReel)
+		{
+			retour = 1;
+		}
+		else if(heureTempsReel == c.heureTempsReel)
+		{
+			if(minutesTempsReel < c.minutesTempsReel)
+			{
+				retour = -1;
+			}
+			else if(minutesTempsReel > c.minutesTempsReel)
+			{
+				retour = 1;
+			}
+			else if(minutesTempsReel == c.minutesTempsReel)
+			{
+				if(secondesTempsReel < c.secondesTempsReel)
+				{
+					retour = -1;
+				}
+				else if(secondesTempsReel > c.secondesTempsReel)
+				{
+					retour = 1;
+				}
+				else 
+				{
+					retour = 0;
+				}
+			}
+		}
+		return retour;
 	}
+	
 	
 	
 }

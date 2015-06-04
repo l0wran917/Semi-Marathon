@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -36,6 +37,7 @@ public class VueResultats extends JPanel implements ActionListener{
 		this.setLayout(new GridLayout(4,1));
 		
 		this.coureurs = coureurs;
+		Collections.sort(coureurs); // on tri les coureurs par temps reel
 		
 		JPanel troisBtn = new JPanel();
 		troisBtn.setLayout(new BorderLayout());
@@ -184,8 +186,6 @@ public class VueResultats extends JPanel implements ActionListener{
 				classementCoureurs.add(coureur);
 			}
 		}
-		
-		
 		return classementCoureurs;
 	}
 	
@@ -206,10 +206,10 @@ public class VueResultats extends JPanel implements ActionListener{
 		
 		for(Coureur coureur : coureurs)
 		{
-			if(coureur.getNom() == nom){
+			if(coureur.getNom().toUpperCase().compareTo(nom.toUpperCase()) == 0)
+			{
 				classementCoureurs.add(coureur);
 			}
-			
 		}
 		return classementCoureurs;
 	}
@@ -241,13 +241,6 @@ public class VueResultats extends JPanel implements ActionListener{
 		}
 		return classementCoureurs;
 	}
-	
-	
-	public void trierTempsReel(ArrayList<Coureur> coureurs)
-	{
-		//Arrays.sort(coureurs);
-	}
-	
 	
 	public static boolean isNumeric(String str)
 	  {
