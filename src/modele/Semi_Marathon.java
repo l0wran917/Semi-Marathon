@@ -171,7 +171,7 @@ public class Semi_Marathon{
 			break;
 			case VueAdmin.MODIF_INFOS :
 				fenetreTmp.setSize(410,275);
-				fenetreTmp.add(new VueModifInfos());
+				fenetreTmp.add(new VueModifInfos(this));
 			break;
 			case VueAdmin.INSTITUTIONS :
 				fenetreTmp.setSize(300, 600);
@@ -200,7 +200,18 @@ public class Semi_Marathon{
 	{ return ville; }
 
 	public String getDate() {
-		String dateFormate = date.getDate() + "/" + date.getMonth() + "/" + date.getYear();
+		
+		String jour = Integer.toString(date.getDate());
+		String mois = Integer.toString(date.getMonth());
+		String annee = Integer.toString(date.getYear());
+		
+		if(jour.length() == 1)
+			jour = new String("0" + jour);
+		
+		if(mois.length() == 1)
+			mois = new String("0" + mois);
+		
+		String dateFormate = jour + "/" + mois + "/" + annee;
 		
 		return dateFormate;
 	}
