@@ -66,7 +66,7 @@ public class Coureur {
 	
 	public Coureur(String nom, String prenom, char sexe, Date dateNaiss, String adresse, int cp, 
 			String ville, String pays, String nationalite, long tel, String mail, String club, int license,
-			Ecole_Entreprise institution)
+			Ecole_Entreprise institution, Categorie cat)
 	{
 		NB_COUREURS++;
 		
@@ -85,6 +85,7 @@ public class Coureur {
 		this.numLicense = license;
 		this.institution = institution;
 		this.numDossard = NB_COUREURS;
+		this.categorie = cat;
 	}
 	
 	public int getNumDossard() 
@@ -103,7 +104,12 @@ public class Coureur {
 	{ return position; }
 	
 	public String getCodeCategorie()
-	{ return categorie.getCode(); }
+	{ 
+		if(categorie != null)
+			return categorie.getCode(); 
+		else
+			return new String("XX");
+	}
 	
 	public String getHeureLigneDepart()
 	{
@@ -140,11 +146,6 @@ public class Coureur {
 
 	public void setTypeDossard(TypeDossard typeDossardTmp) {
 		this.typeDossard = typeDossardTmp;
-	}
-
-	public void setCategorie(Categorie catTmp) {
-		System.out.println("Cat : " + numDossard);
-		this.categorie=categorie;
 	}
 	
 	public char getSexe()

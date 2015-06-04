@@ -494,13 +494,15 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 					String telephoneSansEspace = telephone.getText().replace(" ", "");
 					String numCBSansEspace = numCB.getText().replace(" ", "");
 					
+					Categorie catTmp = semiMarathon.getCategorie(dateNaissance.getYear());
+
 					Coureur coureurTmp = new Coureur(nom.getText(), prenom.getText(), 
 						sex.getItemAt(sex.getSelectedIndex()).charAt(0),
 						dateNaissance, adresse.getText(), Integer.parseInt(codePost.getText()), 
 						ville.getText(),
 						pays.	getText(), nationalite.getText(), Long.parseLong(telephoneSansEspace), 
 						mail.getText(),
-						club.getText(), Integer.parseInt(license.getText()), institutionTmp);
+						club.getText(), Integer.parseInt(license.getText()), institutionTmp, catTmp);
 					
 					if(paiementCheque.isSelected())
 						coureurTmp.setPaiement("cheque");
@@ -509,14 +511,10 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 								Integer.parseInt(moisCB.getText()), Integer.parseInt(anneeCB.getText()),
 								Integer.parseInt(criptoCB.getText()));
 					
+					catTmp.ajoutCoureur(coureurTmp);
+
 					if(typeDossardTmp != null)
 						coureurTmp.setTypeDossard(typeDossardTmp);
-					
-					Categorie catTmp = semiMarathon.getCategorie(dateNaissance.getYear());
-					coureurTmp.setCategorie(catTmp);
-					catTmp.ajoutCoureur(coureurTmp);
-					if(catTmp == null)
-						System.out.println("erreur");
 					
 					institutionTmp.ajoutCoureur(coureurTmp);
 					semiMarathon.ajoutCoureur(coureurTmp);
