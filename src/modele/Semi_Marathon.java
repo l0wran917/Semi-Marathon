@@ -122,8 +122,55 @@ public class Semi_Marathon{
 	
 	public void genererCoureurs()
 	{
-		for(int i=1; i < 40; i++) // Ajout de partenaires pour test
-			coureurs.add(new Coureur("Nom", "Prenom", this));
+		ArrayList<String> noms = new ArrayList<String>();
+		ArrayList<String> prenoms = new ArrayList<String>();
+		
+		prenoms.add("Maxime");	prenoms.add("Jean-Luc");
+		prenoms.add("Hervé");	prenoms.add("Cyril");
+		prenoms.add("Frédéric"); prenoms.add("Patrick");
+		prenoms.add("Emile");	prenoms.add("Raymond");
+		prenoms.add("Patrice");	prenoms.add("Marc");
+		prenoms.add("Yves");	prenoms.add("Paul");
+		prenoms.add("Alexis"); prenoms.add("Benjamin");
+		prenoms.add("Georges");	prenoms.add("Stéphane");
+		prenoms.add("Antoine");
+		prenoms.add("Louane"); 	prenoms.add("Amandine");
+		prenoms.add("Zoe");	prenoms.add("Gabrielle");
+		prenoms.add("Olivia");	prenoms.add("Lucie");
+		prenoms.add("Ambre");	prenoms.add("Andrea");
+		prenoms.add("Morgane");	prenoms.add("Lise");
+		prenoms.add("Heloise");	prenoms.add("Solene");
+		prenoms.add("Chloe");	prenoms.add("Loane");
+		prenoms.add("Alexia");	prenoms.add("Claire");
+		prenoms.add("Pauline");
+		
+		noms.add("Ankhesen");	noms.add("Gunhild");
+		noms.add("Ankhesen");	noms.add("Geertje");
+		noms.add("Senbi"); noms.add("Edith");
+		noms.add("Wosret");	noms.add("Vilhelmine");
+		noms.add("Teti");	noms.add("﻿Alrun");
+		noms.add("Pepi");	noms.add("Deetje");
+		noms.add("Bebi"); noms.add("Svanhilde");
+		noms.add("Piye");	noms.add("Frideborg");
+		noms.add("Euredice");
+		noms.add("Nepherites"); 	noms.add("Vilma");
+		noms.add("Senbi");	noms.add("Ida");
+		noms.add("Tepemkau");	noms.add("Lucie");
+		noms.add("Berenike");	noms.add("Brelok");
+		noms.add("Bet");	noms.add("Ulfaran");
+		noms.add("Hebeny");	noms.add("Muri");
+		noms.add("Netikerty");	noms.add("Dworkok");
+		noms.add("Ankhesen");	noms.add("Dailin");
+		noms.add("Arsinoe");
+		
+
+		for(int i=1; i < 65; i++) // Ajout de partenaires pour test
+		{
+			int numNom = (int) (Math.random() * noms.size());
+			int numPrenom = (int) (Math.random() * prenoms.size());
+			
+			coureurs.add(new Coureur(noms.get(numNom), prenoms.get(numPrenom), this));
+		}
 	}
 	
 	public static void main(String args[])
@@ -148,7 +195,7 @@ public class Semi_Marathon{
 				fenetreTmp.add(new VuePartenaires(partenaires, this));
 			break;
 			case VueMenuUtilisateur.INSCRITS :
-				fenetreTmp.setSize(300, 600);
+				fenetreTmp.setSize(400, 600);
 				fenetreTmp.add(new VueInscrits(coureurs, this));
 			break;
 			case VueMenuUtilisateur.PARCOURS :

@@ -39,9 +39,9 @@ public class Coureur implements Comparable<Coureur> {
 	// TempsReel
 	
 	private String tempsReel;
-	int heureTempsReel;
-	int minutesTempsReel;
-	int secondesTempsReel;
+	private int heureTempsReel;
+	private int minutesTempsReel;
+	private int secondesTempsReel;
 	
 	// position
 	private int position;
@@ -63,8 +63,22 @@ public class Coureur implements Comparable<Coureur> {
 		chronos = new ArrayList<ChronometragePoint>();
 		
 		chronos.add(new ChronometragePoint(new Time(01,01,14) , this));
-	    chronos.add(new ChronometragePoint(new Time(10,11,14) , this));
-	    
+		tempsReel = getTempsReelAleatoire();
+		int heureArrive = chronos.get(0).getHeure().getHours() + heureTempsReel;
+		int minutesArrive = chronos.get(0).getHeure().getMinutes() + minutesTempsReel;
+		if(minutesArrive >= 60)
+		{
+			minutesArrive %= 60;
+			heureArrive += 1;
+		}
+		int secondesArrive = chronos.get(0).getHeure().getSeconds() + secondesTempsReel;
+		if(secondesArrive >= 60)
+		{
+			secondesArrive %= 60;
+			minutesArrive += 1;
+		}
+		
+		chronos.add(new ChronometragePoint(new Time(heureArrive, minutesArrive, secondesArrive) , this));	    
 	    
 	    if((int)(Math.random()*10) % 2 == 0)
 	    	sexe = 'H';
@@ -76,7 +90,6 @@ public class Coureur implements Comparable<Coureur> {
 	    
 	    categorie = semiMarathon.getCategorie(anneeNaissance);
 	    
-	    tempsReel = getTempsReelAleatoire();
 		
 	}
 	
@@ -102,6 +115,28 @@ public class Coureur implements Comparable<Coureur> {
 		this.institution = institution;
 		this.numDossard = NB_COUREURS;
 		this.categorie = cat;
+		
+		chronos = new ArrayList<ChronometragePoint>();
+		chronos.add(new ChronometragePoint(new Time(01,01,14) , this));
+		
+		tempsReel = getTempsReelAleatoire();
+		
+		int heureArrive = chronos.get(0).getHeure().getHours() + heureTempsReel;
+		int minutesArrive = chronos.get(0).getHeure().getMinutes() + minutesTempsReel;
+		if(minutesArrive >= 60)
+		{
+			minutesArrive %= 60;
+			heureArrive += 1;
+		}
+		int secondesArrive = chronos.get(0).getHeure().getSeconds() + secondesTempsReel;
+		if(secondesArrive >= 60)
+		{
+			secondesArrive %= 60;
+			minutesArrive += 1;
+		}
+		
+		chronos.add(new ChronometragePoint(new Time(heureArrive, minutesArrive, secondesArrive) , this));
+		
 	}
 	
 	public int getNumDossard() 

@@ -61,21 +61,28 @@ public class VueRetraitDossard extends JPanel implements ActionListener{
 		{
 			if(((JButton)e.getSource()).getActionCommand() == "valider")
 			{
-				Coureur coureurTmp = semiMarathon.getCoureur(Integer.parseInt(numDossard.getText()));
-				if(coureurTmp != null)
+				try
 				{
-					if(coureurTmp.getDossardRetire()) // Si deja retiré
-						JOptionPane.showMessageDialog(this, "Dossard déja retiré", "Erreur", JOptionPane.ERROR_MESSAGE);
+					Coureur coureurTmp = semiMarathon.getCoureur(Integer.parseInt(numDossard.getText()));
+					if(coureurTmp != null)
+					{
+						if(coureurTmp.getDossardRetire()) // Si deja retiré
+							JOptionPane.showMessageDialog(this, "Dossard déja retiré", "Erreur", JOptionPane.ERROR_MESSAGE);
+						else
+						{
+							coureurTmp.validerRetraitDossard();
+							JOptionPane.showMessageDialog(this, "Retrait enregistré");
+						}	
+					}
 					else
 					{
-						coureurTmp.validerRetraitDossard();
-						JOptionPane.showMessageDialog(this, "Retrait enregistré");
-					}	
+						// Coureur n'existe pas
+						JOptionPane.showMessageDialog(this, "Numero de dossard inexistant", "Erreur", JOptionPane.ERROR_MESSAGE);	
+					}
 				}
-				else
+				catch(Exception ex)
 				{
-					// Coureur n'existe pas
-					JOptionPane.showMessageDialog(this, "Numero de dossard inexistant", "Erreur", JOptionPane.ERROR_MESSAGE);	
+					JOptionPane.showMessageDialog(this, "Valeur saisie incorrecte", "Erreur", JOptionPane.ERROR_MESSAGE);	
 				}
 			}
 		}

@@ -49,7 +49,7 @@ public class VueInscrits extends JPanel{
 			lblInscrits.add(new JLabel(Integer.toString(coureur.getNumDossard()), SwingConstants.CENTER));
 			lblInscrits.add(new JLabel(coureur.getNom(), SwingConstants.CENTER));
 			lblInscrits.add(new JLabel(coureur.getPrenom(), SwingConstants.CENTER));
-			lblInscrits.add(new JLabel("" + coureur.getDateNaiss(), SwingConstants.CENTER)); // sans les "", ne fonctionne pas
+			lblInscrits.add(new JLabel("" + coureur.getDateNaissString(), SwingConstants.CENTER)); // sans les "", ne fonctionne pas
 		}
 		
 		for(JLabel label : lblInscrits) // on traite chaque labels 

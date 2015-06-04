@@ -357,6 +357,17 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 						metLblPrecedentCouleur(infosPaiement, infosPaiement.getComponent(i), "black");
 				}
 			}
+			
+			if(moisCB.getText().replace(" ", "").length() != 0)
+			{
+				if(Integer.parseInt(moisCB.getText()) >= 12 || Integer.parseInt(moisCB.getText()) < 1)
+				{
+					metLblPrecedentCouleur(infosPaiement, moisCB, "red");
+					infoIncorrect = true;
+				}
+				else
+					metLblPrecedentCouleur(infosPaiement, moisCB, "black");
+			}
 		}
 		
 		// Verification sasDepart
