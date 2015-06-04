@@ -45,6 +45,8 @@ public class VueMenuUtilisateur extends JPanel implements ActionListener {
 	public static final String PARTENAIRES = "Partenaires";
 	public static final String ADMIN_MDP = "Connexion administrateur";
 	public static final String ADMIN = "Administration";
+	public static final String CLASSEMENT = "Classement";
+	
 	
 	public VueMenuUtilisateur(Semi_Marathon semiMarathon)
 	{

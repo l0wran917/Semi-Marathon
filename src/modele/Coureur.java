@@ -4,7 +4,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Coureur {
+public class Coureur implements Comparable<Coureur> {
 	
 	public static int NB_COUREURS = 0;
 	private int numDossard;
@@ -38,6 +38,11 @@ public class Coureur {
 	
 	// TempsReel
 	
+	private String tempsReel;
+	int heureTempsReel;
+	int minutesTempsReel;
+	int secondesTempsReel;
+	
 	// position
 	private int position;
 	
@@ -58,6 +63,11 @@ public class Coureur {
 		
 		chronos.add(new ChronometragePoint(new Time(01,01,14) , this));
 	    chronos.add(new ChronometragePoint(new Time(10,11,14) , this));
+	    
+	    sexe = 'H';
+	    
+	    tempsReel = getTempsReelAleatoire();
+	
 		
 		position = 1;
 		categorie = new Categorie("Cadet", "CA", 1995, 2015);
@@ -135,6 +145,44 @@ public class Coureur {
 		this.typePaiement = typePaiement;
 		
 	}
+	
+	/*public String getTempsReelCalcul()
+	{
+		String heure = "";
+		String minute = "";
+		String seconde = "";
+		
+		return "";
+	}*/
+	
+	public String getTempsReelAleatoire()
+	{	
+		int heure = 1 + (int)(Math.random() * ((2 - 1) + 1));
+		int minute = 0 + (int)(Math.random() * ((60 - 0) + 1));
+		int seconde = 0 + (int)(Math.random() * ((60 - 0) + 1));
+		
+		
+		if(heure == 2 && minute > 50)
+		{
+			minute = minute - 10;
+		}
+		if(minute == 60 && seconde != 0)
+		{
+			seconde = 0;
+		}
+		
+		heureTempsReel = heure;
+		minutesTempsReel = minute;
+		secondesTempsReel = seconde;
+	
+		return Integer.toString(heure) + ":" + Integer.toString(minute) + ":" + Integer.toString(seconde);
+	}
+	
+	public String getTempsReel()
+	{ return tempsReel; }
+	
+	public double getTempsReelDouble()
+	{ return Double.parseDouble(tempsReel); }
 
 	public void setPaiement(String typePaiement, long numCB, int moisCB, int anneeCB, int criptoCB) {
 		this.typePaiement = "cb";
@@ -147,9 +195,10 @@ public class Coureur {
 	public void setTypeDossard(TypeDossard typeDossardTmp) {
 		this.typeDossard = typeDossardTmp;
 	}
-	
+	 
 	public char getSexe()
 	{ return sexe; }
+
 
 	public void validerRetraitDossard() {
 		this.dossardRetire = true;
@@ -158,6 +207,48 @@ public class Coureur {
 	public boolean getDossardRetire(){
 		return dossardRetire;
 	}
+
+	public int compareTo(Coureur c)
+	{
+		int retour = 0;
+		
+		if(heureTempsReel < c.heureTempsReel)
+		{
+			retour =  -1;
+		}
+		else if(heureTempsReel > c.heureTempsReel)
+		{
+			retour = 1;
+		}
+		else if(heureTempsReel == c.heureTempsReel)
+		{
+			if(minutesTempsReel < c.minutesTempsReel)
+			{
+				retour = -1;
+			}
+			else if(minutesTempsReel > c.minutesTempsReel)
+			{
+				retour = 1;
+			}
+			else if(minutesTempsReel == c.minutesTempsReel)
+			{
+				if(secondesTempsReel < c.secondesTempsReel)
+				{
+					retour = -1;
+				}
+				else if(secondesTempsReel > c.secondesTempsReel)
+				{
+					retour = 1;
+				}
+				else 
+				{
+					retour = 0;
+				}
+			}
+		}
+		return retour;
+	}
+
 	
 }
 
