@@ -52,7 +52,7 @@ public class Coureur implements Comparable<Coureur> {
 	private TypeDossard typeDossard;
 	
 	
-	public Coureur(String nom, String prenom){
+	public Coureur(String nom, String prenom, Semi_Marathon semiMarathon){
 		NB_COUREURS++;
 		
 		this.nom = nom;
@@ -64,13 +64,18 @@ public class Coureur implements Comparable<Coureur> {
 		chronos.add(new ChronometragePoint(new Time(01,01,14) , this));
 	    chronos.add(new ChronometragePoint(new Time(10,11,14) , this));
 	    
-	    sexe = 'H';
+	    
+	    if((int)(Math.random()*10) % 2 == 0)
+	    	sexe = 'H';
+	    else
+	    	sexe = 'F';
+	    
+	    int anneeNaissance = (int)(Math.random()* (2015-1940) + 1940);
+	    dateNaiss = new Date(anneeNaissance, (int)(Math.random()*(12 - 1)+1), (int)(Math.random()*30)+1);
+	    
+	    categorie = semiMarathon.getCategorie(anneeNaissance);
 	    
 	    tempsReel = getTempsReelAleatoire();
-	
-		
-		position = 1;
-		categorie = new Categorie("Cadet", "CA", 1995, 2015);
 		
 	}
 	
@@ -109,6 +114,23 @@ public class Coureur implements Comparable<Coureur> {
 	
 	public Date getDateNaiss() 
 	{ return dateNaiss; }
+	
+	public String getDateNaissString() {
+			
+			String jour = Integer.toString(dateNaiss.getDate());
+			String mois = Integer.toString(dateNaiss.getMonth());
+			String annee = Integer.toString(dateNaiss.getYear());
+			
+			if(jour.length() == 1)
+				jour = new String("0" + jour);
+			
+			if(mois.length() == 1)
+				mois = new String("0" + mois);
+			
+			String dateFormate = jour + "/" + mois + "/" + annee;
+			
+			return dateFormate;
+		}
 	
 	public int getPosition()
 	{ return position; }

@@ -79,10 +79,8 @@ public class Semi_Marathon{
 		JLabel logo = new JLabel();
 		for(int i=1; i < 4; i++) // Ajout de partenaires pour test
 			partenaires.add(new Partenaire("Partenaire " + Integer.toString(i), "Mail " + Integer.toString(i), new JLabel(new ImageIcon("assets/logoApple.png"))));
-	
+		
 		coureurs = new ArrayList<Coureur>();
-		for(int i=1; i < 40; i++) // Ajout de partenaires pour test
-			coureurs.add(new Coureur("Nom", "Prenom"));
 		
 		rues = new ArrayList<Rue>();
 		for(int i=1; i < 40; i++) // Ajout de rues pour test
@@ -104,9 +102,9 @@ public class Semi_Marathon{
 		
 		categorie = new ArrayList<Categorie>();
 		categorie.add(new Categorie("Veterans", "V4", 1945, -90000));
-		categorie.add(new Categorie("Veterans", "V3", 1946, 1955));
-		categorie.add(new Categorie("Veterans", "V2", 1956, 1965));
-		categorie.add(new Categorie("Veterans", "V1", 1966, 1975));
+		categorie.add(new Categorie("Veterans", "V3", 1955, 1946));
+		categorie.add(new Categorie("Veterans", "V2", 1965, 1956));
+		categorie.add(new Categorie("Veterans", "V1", 1975, 1966));
 		categorie.add(new Categorie("Seniors", "SE", 1992, 1976));
 		categorie.add(new Categorie("Espoirs", "ES", 1995, 1993));
 		categorie.add(new Categorie("Juniors", "JU", 1997, 1996));
@@ -122,10 +120,17 @@ public class Semi_Marathon{
 		fenetres.get(0).setVisible(true);
 	}
 	
+	public void genererCoureurs()
+	{
+		for(int i=1; i < 40; i++) // Ajout de partenaires pour test
+			coureurs.add(new Coureur("Nom", "Prenom", this));
+	}
+	
 	public static void main(String args[])
 	{
 		@SuppressWarnings("unused")
 		Semi_Marathon semiMarathon = new Semi_Marathon();
+		semiMarathon.genererCoureurs();
 	}
 
 	public void ouvrir(String actionCommand) {
@@ -295,7 +300,7 @@ public class Semi_Marathon{
 			return null;
 	}
 	
-	public Categorie getCategorie(int anneeNaissance)
+	public  Categorie getCategorie(int anneeNaissance)
 	{
 		int i = 0;
 		
