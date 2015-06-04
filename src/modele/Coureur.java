@@ -195,6 +195,11 @@ public class Coureur implements Comparable<Coureur> {
 	public void setTypeDossard(TypeDossard typeDossardTmp) {
 		this.typeDossard = typeDossardTmp;
 	}
+	
+	public void setPosition(int i)
+	{
+		this.position = i;
+	}
 	 
 	public char getSexe()
 	{ return sexe; }

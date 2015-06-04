@@ -37,7 +37,7 @@ public class VueResultats extends JPanel implements ActionListener{
 		this.setLayout(new GridLayout(4,1));
 		
 		this.coureurs = coureurs;
-		Collections.sort(coureurs); // on tri les coureurs par temps reel
+		trierCoureurs(coureurs); // on tri les coureurs par temps reel
 		
 		JPanel troisBtn = new JPanel();
 		troisBtn.setLayout(new BorderLayout());
@@ -255,6 +255,15 @@ public class VueResultats extends JPanel implements ActionListener{
 	    return true;
 	  }
 	
+	
+	public void trierCoureurs(ArrayList<Coureur> coureurs)
+	{
+		Collections.sort(coureurs);
+		for(int i = 1; i < coureurs.size() + 1 ; i++)
+		{
+			coureurs.get(i-1).setPosition(i);
+		}
+	}
 
 	
 	
