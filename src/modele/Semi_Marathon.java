@@ -215,7 +215,8 @@ public class Semi_Marathon{
 
 	public void ajoutCoureur(Coureur coureurTmp) {
 		coureurs.add(coureurTmp);
-		fenetres.get(0).repaint();
+	//	((VueMenuUtilisateur) fenetres.get(0).getComponent(0)).refreshInfos();
+		
 		System.out.println(coureurs.size());
 	}
 	

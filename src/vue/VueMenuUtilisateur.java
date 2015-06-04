@@ -30,6 +30,11 @@ public class VueMenuUtilisateur extends JPanel implements ActionListener {
 	private JButton inscrits;
 	private JButton partenaires;
 	
+	private JLabel lieu;
+	private JLabel date;
+	private JLabel distance;
+	private JLabel nbCoureur;
+	
 	public static final String INSCRIPTION = "Inscription";
 	public static final String PARCOURS = "Parcours";
 	public static final String RESULTATS = "Resultats";
@@ -54,11 +59,17 @@ public class VueMenuUtilisateur extends JPanel implements ActionListener {
 		JPanel pnlInfos = new JPanel();
 		pnlInfos.setLayout(new GridLayout(1, 4));
 
+		lieu = new JLabel("Lieu : " + semiMarathon.getVille(), SwingConstants.CENTER);
+		date = new JLabel("Date : " + semiMarathon.getDate(), SwingConstants.CENTER);
+		distance = new JLabel("Distance : " + semiMarathon.getDistance() + " Km", SwingConstants.CENTER);
+		nbCoureur = new JLabel("Coureur : " + semiMarathon.getNbInscrits() + " / " + semiMarathon.getNbMaxCoureur(), 
+				SwingConstants.CENTER);
+		
 		ArrayList<JLabel> lblInfos = new ArrayList<JLabel>();
-		lblInfos.add(new JLabel("Lieu : " + semiMarathon.getVille(), SwingConstants.CENTER));
-		lblInfos.add(new JLabel("Date : " + semiMarathon.getDate(), SwingConstants.CENTER));
-		lblInfos.add(new JLabel("Distance : " + semiMarathon.getDistance() + " Km", SwingConstants.CENTER));
-		lblInfos.add(new JLabel("Coureur : " + semiMarathon.getNbInscrits() + " / " + semiMarathon.getNbMaxCoureur(), SwingConstants.CENTER));
+		lblInfos.add(lieu);
+		lblInfos.add(date);
+		lblInfos.add(distance);
+		lblInfos.add(nbCoureur);
 		
 		Font font = new Font(lblInfos.get(0).getFont().getFontName(), lblInfos.get(0).getFont().getStyle(), 16);
 		for(JLabel lbl : lblInfos)
@@ -147,6 +158,15 @@ public class VueMenuUtilisateur extends JPanel implements ActionListener {
 		
 		this.add(pnlTitre, BorderLayout.NORTH);
 		this.add(pnlCenter, BorderLayout.CENTER);
+	}
+	
+	public void refreshInfos()
+	{
+		lieu = new JLabel("Lieu : " + semiMarathon.getVille(), SwingConstants.CENTER);
+		date = new JLabel("Date : " + semiMarathon.getDate(), SwingConstants.CENTER);
+		distance = new JLabel("Distance : " + semiMarathon.getDistance() + " Km", SwingConstants.CENTER);
+		nbCoureur = new JLabel("Coureur : " + semiMarathon.getNbInscrits() + " / " + semiMarathon.getNbMaxCoureur(), 
+				SwingConstants.CENTER);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
