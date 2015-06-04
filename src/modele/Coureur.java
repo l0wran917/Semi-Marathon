@@ -146,6 +146,9 @@ public class Coureur {
 		this.categorie=categorie;
 	}
 	
+	public char getSexe()
+	{ return sexe; }
+	
 }
 
 

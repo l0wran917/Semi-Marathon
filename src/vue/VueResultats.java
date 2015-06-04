@@ -4,12 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import modele.Coureur;
 
 public class VueResultats extends JPanel implements ActionListener{
 
@@ -21,9 +24,15 @@ public class VueResultats extends JPanel implements ActionListener{
 	private JTextField num;
 	private JTextField pos;
 	
-	public VueResultats()
+	private char sexeCoureurs; // H, F
+	private ArrayList<Coureur> coureurs;
+	
+	public VueResultats(ArrayList<Coureur> coureurs)
 	{
 		this.setLayout(new GridLayout(4,1));
+		
+		sexeCoureurs = 'H'; // on initialise a homme
+		this.coureurs = coureurs;
 		
 		JPanel troisBtn = new JPanel();
 		troisBtn.setLayout(new BorderLayout());
@@ -125,13 +134,14 @@ public class VueResultats extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println(e.getActionCommand());
 		switch(e.getActionCommand())
 		{
 			case "homme" :
-				
+				sexeCoureurs = 'H';
 			break;
 			case "femme" :
-				
+				sexeCoureurs = 'F';
 			break;
 			case "general" :
 				
@@ -150,5 +160,77 @@ public class VueResultats extends JPanel implements ActionListener{
 			break;
 		}
 	}
+	
+	public ArrayList<Coureur> chercherCoureur(String nom, char sexe)
+	{
+		ArrayList<Coureur> classementCoureurs = new ArrayList<Coureur>();
+		
+		for(Coureur coureur : coureurs)
+		{
+			if(coureur.getSexe() == sexe && coureur.getNom() == nom)
+			{
+				classementCoureurs.add(coureur);
+			}
+		}
+		return classementCoureurs;
+	}
+	
+	public ArrayList<Coureur> chercherCoureur(int num, char sexe)
+	{
+		ArrayList<Coureur> classementCoureurs = new ArrayList<Coureur>();
+		
+		for(Coureur coureur : coureurs)
+		{
+			if(coureur.getSexe() == sexe && coureur.getNumDossard() == num)
+			{
+				classementCoureurs.add(coureur);
+			}
+		}
+		return classementCoureurs;
+	}
+	
+	public ArrayList<Coureur> chercherCoureur(char sexe, int position)
+	{
+		ArrayList<Coureur> classementCoureurs = new ArrayList<Coureur>();
+		
+		for(Coureur coureur : coureurs)
+		{
+			if(coureur.getSexe() == sexe && coureur.getPosition() == position)
+			{
+				classementCoureurs.add(coureur);
+			}
+		}	
+		return classementCoureurs;
+	}
+	
+	public ArrayList<Coureur> chercherCoureur(int position)
+	{
+		ArrayList<Coureur> classementCoureurs = new ArrayList<Coureur>();
+		
+		for(Coureur coureur : coureurs)
+		{
+			if(coureur.getPosition() == position)
+			{
+				classementCoureurs.add(coureur);
+			}
+		}	
+		return classementCoureurs;
+	}
+	
+	public ArrayList<Coureur> chercherCoureur(String nom)
+	{
+		ArrayList<Coureur> classementCoureurs = new ArrayList<Coureur>();
+		
+		for(Coureur coureur : coureurs)
+		{
+			if(coureur.getNom() == nom)
+			{
+				classementCoureurs.add(coureur);
+			}
+		}	
+		return classementCoureurs;
+	}
+	
+	
 	
 }
