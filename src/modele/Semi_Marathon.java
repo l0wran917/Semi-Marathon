@@ -56,7 +56,7 @@ public class Semi_Marathon{
 		fenetres.add(new JFrame("Semi Marathon"));
 		fenetres.get(0).setSize(800, 600);
 		fenetres.get(0).setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//fenetres.get(0).setResizable(false);
+		fenetres.get(0).setResizable(false);
 			
 		ville = "Paris";
 		date = new Date(2015, 3, 8); // 8 Mars 2015
@@ -255,6 +255,10 @@ public class Semi_Marathon{
 
 	public void ajoutCoureur(Coureur coureurTmp) {
 		coureurs.add(coureurTmp);
+		refreshVueMenuUtilisateur();
+	}
+	
+	public void refreshVueMenuUtilisateur(){
 		((VueMenuUtilisateur) ((JFrame) fenetres.get(0)).getContentPane().getComponent(0)).refreshInfos();
 	}
 
@@ -308,6 +312,35 @@ public class Semi_Marathon{
 			return coureurs.get(num-1);
 		else
 			return null;
+		
+	}
+
+	public void setInfos(String lieu, String date, String distance, String nbCoureursMax) {
+		Date dateTmp = convertiStringDate(date);
+		
+		this.ville = lieu;
+		this.date = dateTmp;
+		this.longueur = Float.parseFloat(distance);
+		this.nbMaxPart = Integer.parseInt(nbCoureursMax);
+		
+		refreshVueMenuUtilisateur();
+		
+	}
+	
+	static public Date convertiStringDate(String date)
+	{
+
+		char jourChar[] = {date.charAt(0), date.charAt(1)};
+		char moisChar[] = {date.charAt(3), date.charAt(4)};
+		char anneeChar[] = {date.charAt(6), date.charAt(7), date.charAt(8), date.charAt(9)};
+		
+		String jour = new String(jourChar);
+		String mois = new String(moisChar);
+		String annee = new String(anneeChar);
+		
+		Date dateReturn = new Date(Integer.parseInt(annee), Integer.parseInt(mois), Integer.parseInt(jour));
+
+		return dateReturn;	
 		
 	}
 	

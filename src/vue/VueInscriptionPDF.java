@@ -489,7 +489,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 					{ i++; }
 					TypeDossard typeDossardTmp = semiMarathon.getTypeDossard(dossard.get(i).getActionCommand());
 					
-					Date dateNaissance = convertiStringDate(anneeNaissance.getText());
+					Date dateNaissance = Semi_Marathon.convertiStringDate(anneeNaissance.getText());
 					
 					String telephoneSansEspace = telephone.getText().replace(" ", "");
 					String numCBSansEspace = numCB.getText().replace(" ", "");
@@ -539,23 +539,6 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 			
 			this.repaint();
 		}
-	}
-	
-	private Date convertiStringDate(String date)
-	{
-
-		char jourChar[] = {date.charAt(0), date.charAt(1)};
-		char moisChar[] = {date.charAt(3), date.charAt(4)};
-		char anneeChar[] = {date.charAt(6), date.charAt(7), date.charAt(8), date.charAt(9)};
-		
-		String jour = new String(jourChar);
-		String mois = new String(moisChar);
-		String annee = new String(anneeChar);
-		
-		Date dateReturn = new Date(Integer.parseInt(annee), Integer.parseInt(mois), Integer.parseInt(jour));
-
-		return dateReturn;	
-		
 	}
 
 }
