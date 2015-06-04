@@ -143,6 +143,7 @@ public class Coureur {
 	}
 
 	public void setCategorie(Categorie catTmp) {
+		System.out.println("Cat : " + numDossard);
 		this.categorie=categorie;
 	}
 	

@@ -515,6 +515,8 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 					Categorie catTmp = semiMarathon.getCategorie(dateNaissance.getYear());
 					coureurTmp.setCategorie(catTmp);
 					catTmp.ajoutCoureur(coureurTmp);
+					if(catTmp == null)
+						System.out.println("erreur");
 					
 					institutionTmp.ajoutCoureur(coureurTmp);
 					semiMarathon.ajoutCoureur(coureurTmp);

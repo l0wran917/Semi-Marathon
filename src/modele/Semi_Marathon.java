@@ -17,7 +17,7 @@ import vue.VueMenuUtilisateur;
 import vue.VueModifInfos;
 import vue.VuePartenaires;
 import vue.VuePrecisionsParcours;
-import vue.VueResultats;
+import vue.VueRechercheResultat;
 import vue.VueRetraitDossard;
 
 
@@ -155,7 +155,7 @@ public class Semi_Marathon{
 			break;
 			case VueMenuUtilisateur.RESULTATS :
 				fenetreTmp.setSize(700, 480);
-				fenetreTmp.add(new VueResultats(coureurs));
+				fenetreTmp.add(new VueRechercheResultat(coureurs, this));
 			break;
 			case VueMenuUtilisateur.ADMIN_MDP :
 				fenetreTmp.setSize(300, 90);
