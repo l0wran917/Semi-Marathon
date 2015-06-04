@@ -513,27 +513,9 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		String mois = "";
 		String annee= "";
 		
-		int i=0;
-		while(date.charAt(i) != '/' && i < date.length())
-		{ 
-			jour += date.charAt(i);
-			i++; 
-		}
-		i++;
-		
-		while(date.charAt(i) != '/' && i < date.length())
-		{ 
-			mois += date.charAt(i);
-			i++; 
-		}
-		i++;
-		
-		while(i < date.length()-1)
-		{ 
-			System.err.println(annee + " - " + i);
-			i++; 
-		}
-		i++;
+		jour += date.charAt(0) + date.charAt(1);
+		mois += date.charAt(3) + date.charAt(4);
+		annee += date.charAt(6) + date.charAt(7) + date.charAt(8) + date.charAt(9);
 		
 		Date dateReturn = new Date(Integer.parseInt(annee), Integer.parseInt(mois), Integer.parseInt(jour));
 		

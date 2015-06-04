@@ -65,6 +65,7 @@ public class Coureur {
 			String ville, String pays, String nationalite, int tel, String mail, String club, int license,
 			Ecole_Entreprise institution)
 	{
+		System.out.println("coureur");
 		this.nom = nom;
 		this.prenom = prenom;
 		this.sexe = sexe;
