@@ -45,6 +45,7 @@ public class Coureur implements Comparable<Coureur> {
 	
 	// position
 	private int position;
+	private int positionSexe;
 	
 	
 	private ArrayList<ChronometragePoint> chronos;
@@ -131,6 +132,9 @@ public class Coureur implements Comparable<Coureur> {
 		return heure;
 	}
 	
+	public int getPositionSexe()
+	{ return positionSexe; }
+	
 	public String getHeureLigneArrivee()
 	{
 		String heure = "";
@@ -199,6 +203,11 @@ public class Coureur implements Comparable<Coureur> {
 	public void setPosition(int i)
 	{
 		this.position = i;
+	}
+	
+	public void setPositionSexe(int i)
+	{
+		this.positionSexe = i;
 	}
 	 
 	public char getSexe()

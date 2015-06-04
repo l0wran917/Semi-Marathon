@@ -143,30 +143,27 @@ public class VueResultats extends JPanel implements ActionListener{
 		switch(e.getActionCommand())
 		{
 			case "homme" :
-				semiMarathon.ouvrir("Classement", chercherCoureur('H'));
+				semiMarathon.ouvrir("Classement sexe", chercherCoureur('H'));
 			break;
 			case "femme" :
-				semiMarathon.ouvrir("Classement", chercherCoureur('F'));
+				semiMarathon.ouvrir("Classement sexe", chercherCoureur('F'));
 			break;
 			case "general" :
 				semiMarathon.ouvrir("Classement", chercherCoureur());
 			break;
 			case "nom" :
 				semiMarathon.ouvrir("Classement", chercherCoureur(nom.getText())); // ne marche pas ??!!
-				System.out.println(nom.getText());
 			break;
 			case "num" :
 				if(isNumeric(num.getText()))
 				{
 					semiMarathon.ouvrir("Classement", chercherCoureur(Integer.parseInt(num.getText())));
-					System.out.println(Integer.parseInt(num.getText()));
 				}
 			break;
 			case "pos" :
 				if(isNumeric(pos.getText()))
 				{
 					semiMarathon.ouvrir("Classement", chercherCoureurPos(Integer.parseInt(pos.getText())));
-					System.out.println(Integer.parseInt(pos.getText()));
 				}
 			break;
 			default:
@@ -186,6 +183,11 @@ public class VueResultats extends JPanel implements ActionListener{
 				classementCoureurs.add(coureur);
 			}
 		}
+		for(int i = 1; i < classementCoureurs.size() + 1; i++)
+		{
+			classementCoureurs.get(i - 1).setPositionSexe(i);
+		}
+		
 		return classementCoureurs;
 	}
 	
