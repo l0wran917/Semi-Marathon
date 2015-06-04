@@ -81,7 +81,7 @@ public class Semi_Marathon{
 	
 		coureurs = new ArrayList<Coureur>();
 		for(int i=1; i < 40; i++) // Ajout de partenaires pour test
-			coureurs.add(new Coureur("Nom", "Prenom", 1));
+			coureurs.add(new Coureur("Nom", "Prenom"));
 		
 		rues = new ArrayList<Rue>();
 		for(int i=1; i < 40; i++) // Ajout de rues pour test
@@ -209,7 +209,11 @@ public class Semi_Marathon{
 		
 		if(institutions.get(i).getNom() == institution)
 			institutionRecherche = institutions.get(i);
-		
+		else
+		{
+			institutionRecherche = new Ecole_Entreprise(institution);
+			this.institutions.add(institutionRecherche);		
+		}
 		return institutionRecherche;
 	}
 

@@ -23,6 +23,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.text.MaskFormatter;
 
+import org.omg.CORBA.Environment;
+
 import modele.Coureur;
 import modele.Ecole_Entreprise;
 import modele.Semi_Marathon;
@@ -487,7 +489,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 						sex.getItemAt(sex.getSelectedIndex()).charAt(0),
 						dateNaissance, adresse.getText(), Integer.parseInt(codePost.getText()), 
 						ville.getText(),
-						pays.getText(), nationalite.getText(), Integer.parseInt(telephoneSansEspace), 
+						pays.getText(), nationalite.getText(), Long.parseLong(telephoneSansEspace), 
 						mail.getText(),
 						club.getText(), Integer.parseInt(license.getText()), institutionTmp);
 					
@@ -497,10 +499,16 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 						coureurTmp.setPaiement("cb", Long.parseLong(numCBSansEspace), 
 								Integer.parseInt(moisCB.getText()), Integer.parseInt(anneeCB.getText()),
 								Integer.parseInt(criptoCB.getText()));
-						
 					
-					
+					institutionTmp.ajoutCoureur(coureurTmp);
 					semiMarathon.ajoutCoureur(coureurTmp);
+					
+					int numDossard = coureurTmp.getNumDossard();
+					
+					JOptionPane.showMessageDialog(this, "<html><center>Inscription confirmé,<br>"
+							+ "vous allez recevoir un email de confirmation<br>"
+							+ "(Nan je rigole, c'est pour faire genre)<br>"
+							+ "Numero Dossard : " + numDossard + "</center></html>");
 				}
 			}
 		}

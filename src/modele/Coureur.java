@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class Coureur {
 	
+	public static int NB_COUREURS = 0;
 	private int numDossard;
 	private String nom;
 	private String prenom;
@@ -20,7 +21,7 @@ public class Coureur {
 	private String etat;
 	private String pays;
 	private String nationalite;
-	private int tel;
+	private long tel;
 	private String email;
 	private String club;
 	private int numLicense;
@@ -46,10 +47,12 @@ public class Coureur {
 	private TypeDossard typeDossard;
 	
 	
-	public Coureur(String nom, String prenom, int numDossard){
+	public Coureur(String nom, String prenom){
+		NB_COUREURS++;
+		
 		this.nom = nom;
 		this.prenom = prenom;
-		this.numDossard = numDossard;
+		this.numDossard = NB_COUREURS;
 		
 		chronos = new ArrayList<ChronometragePoint>();
 		
@@ -62,10 +65,11 @@ public class Coureur {
 	}
 	
 	public Coureur(String nom, String prenom, char sexe, Date dateNaiss, String adresse, int cp, 
-			String ville, String pays, String nationalite, int tel, String mail, String club, int license,
+			String ville, String pays, String nationalite, long tel, String mail, String club, int license,
 			Ecole_Entreprise institution)
 	{
-		System.out.println("coureur");
+		NB_COUREURS++;
+		
 		this.nom = nom;
 		this.prenom = prenom;
 		this.sexe = sexe;
@@ -80,6 +84,7 @@ public class Coureur {
 		this.club = club;
 		this.numLicense = license;
 		this.institution = institution;
+		this.numDossard = NB_COUREURS;
 	}
 	
 	public int getNumDossard() 
