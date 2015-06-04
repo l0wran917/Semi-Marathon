@@ -137,6 +137,14 @@ public class Coureur {
 		this.anneeFinCB = anneeCB;
 		this.CB_DerniesChiffres = criptoCB;
 	}
+
+	public void setTypeDossard(TypeDossard typeDossardTmp) {
+		this.typeDossard = typeDossardTmp;
+	}
+
+	public void setCategorie(Categorie catTmp) {
+		this.categorie=categorie;
+	}
 	
 }
 

@@ -23,11 +23,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.text.MaskFormatter;
 
-import org.omg.CORBA.Environment;
-
+import modele.Categorie;
 import modele.Coureur;
 import modele.Ecole_Entreprise;
 import modele.Semi_Marathon;
+import modele.TypeDossard;
 
 @SuppressWarnings("serial")
 public class VueInscriptionPDF extends JPanel implements ActionListener {
@@ -229,28 +229,28 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		dossard = new ArrayList<JRadioButton>();
 		
 		JRadioButton dossardElite = new JRadioButton("Dossard Elite");
-		dossardElite.setActionCommand("elite");
+		dossardElite.setActionCommand("ELITE");
 		dossard.add(dossardElite);
 		JRadioButton dossardPref = new JRadioButton("Dossard Preferenciel");
-		dossardPref.setActionCommand("preferenciel");
+		dossardPref.setActionCommand("PREFERENTIEL");
 		dossard.add(dossardPref);
 		JRadioButton dossardRouge = new JRadioButton("Dossard Rouge");
-		dossardRouge.setActionCommand("rouge");
+		dossardRouge.setActionCommand("ROUGE");
 		dossard.add(dossardRouge);
 		JRadioButton lievre1h35 = new JRadioButton("Lievre 1h35");
-		lievre1h35.setActionCommand("1h35");
+		lievre1h35.setActionCommand("JAUNE");
 		dossard.add(lievre1h35);
 		JRadioButton lievre1h40 = new JRadioButton("Lievre 1h40");
-		lievre1h40.setActionCommand("1h40");
+		lievre1h40.setActionCommand("BLEU");
 		dossard.add(lievre1h40);
 		JRadioButton lievre1h50 = new JRadioButton("Lievre 1h50");
-		lievre1h50.setActionCommand("1h50");
+		lievre1h50.setActionCommand("VIOLET");
 		dossard.add(lievre1h50);
 		JRadioButton lievre2h = new JRadioButton("Lievre 2h");
-		lievre2h.setActionCommand("2h");
+		lievre2h.setActionCommand("VERT");
 		dossard.add(lievre2h);
 		JRadioButton lievre2hplus = new JRadioButton("Lievre 2h et +");
-		lievre2hplus.setActionCommand("2h+");
+		lievre2hplus.setActionCommand("ROSE");
 		dossard.add(lievre2hplus);
 		
 		ButtonGroup grpDossard = new ButtonGroup();
@@ -275,8 +275,12 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 		prix33.setActionCommand("33");
 		prixInscription.add(prix33);
 		
+		ButtonGroup grpPrix = new ButtonGroup();
 		for(JRadioButton prix : prixInscription)
+		{
+			grpPrix.add(prix);
 			pnlPrix.add(prix);
+		}
 		
 		JPanel pnlDate = new JPanel();
 		pnlDate.setLayout(new GridLayout(1,2));
@@ -480,6 +484,11 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 					
 					Ecole_Entreprise institutionTmp = semiMarathon.getInstitution(institution);
 					
+					int i=0;
+					while(i<dossard.size() && !dossard.get(i).isSelected())
+					{ i++; }
+					TypeDossard typeDossardTmp = semiMarathon.getTypeDossard(dossard.get(i).getActionCommand());
+					
 					Date dateNaissance = convertiStringDate(anneeNaissance.getText());
 					
 					String telephoneSansEspace = telephone.getText().replace(" ", "");
@@ -489,7 +498,7 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 						sex.getItemAt(sex.getSelectedIndex()).charAt(0),
 						dateNaissance, adresse.getText(), Integer.parseInt(codePost.getText()), 
 						ville.getText(),
-						pays.getText(), nationalite.getText(), Long.parseLong(telephoneSansEspace), 
+						pays.	getText(), nationalite.getText(), Long.parseLong(telephoneSansEspace), 
 						mail.getText(),
 						club.getText(), Integer.parseInt(license.getText()), institutionTmp);
 					
@@ -499,6 +508,13 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 						coureurTmp.setPaiement("cb", Long.parseLong(numCBSansEspace), 
 								Integer.parseInt(moisCB.getText()), Integer.parseInt(anneeCB.getText()),
 								Integer.parseInt(criptoCB.getText()));
+					
+					if(typeDossardTmp != null)
+						coureurTmp.setTypeDossard(typeDossardTmp);
+					
+					Categorie catTmp = semiMarathon.getCategorie(dateNaissance.getYear());
+					coureurTmp.setCategorie(catTmp);
+					catTmp.ajoutCoureur(coureurTmp);
 					
 					institutionTmp.ajoutCoureur(coureurTmp);
 					semiMarathon.ajoutCoureur(coureurTmp);
@@ -527,16 +543,17 @@ public class VueInscriptionPDF extends JPanel implements ActionListener {
 	
 	private Date convertiStringDate(String date)
 	{
-		String jour = "";
-		String mois = "";
-		String annee= "";
+
+		char jourChar[] = {date.charAt(0), date.charAt(1)};
+		char moisChar[] = {date.charAt(3), date.charAt(4)};
+		char anneeChar[] = {date.charAt(6), date.charAt(7), date.charAt(8), date.charAt(9)};
 		
-		jour += date.charAt(0) + date.charAt(1);
-		mois += date.charAt(3) + date.charAt(4);
-		annee += date.charAt(6) + date.charAt(7) + date.charAt(8) + date.charAt(9);
+		String jour = new String(jourChar);
+		String mois = new String(moisChar);
+		String annee = new String(anneeChar);
 		
 		Date dateReturn = new Date(Integer.parseInt(annee), Integer.parseInt(mois), Integer.parseInt(jour));
-		
+
 		return dateReturn;	
 		
 	}

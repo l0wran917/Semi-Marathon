@@ -16,4 +16,24 @@ public class TypeDossard {
 		this.coureurs = coureurs;
 	}
 
+	public TypeDossard(String nom, String description) {		
+		this.nom = nom;
+		this.description = description;
+		this.coureurs = new ArrayList<Coureur>();
+	}
+	
+	public void ajoutCoureur(Coureur coureurTmp)
+	{
+		this.coureurs.add(coureurTmp);
+	}
+
+	public String getNom() {
+		return nom;
+	}
+	
+	public String getDesc() {
+		return description;
+	}
+
+
 }

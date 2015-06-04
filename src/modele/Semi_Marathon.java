@@ -91,6 +91,31 @@ public class Semi_Marathon{
 		for(int i = 0; i < 40; i ++)
 			institutions.add(new Ecole_Entreprise("instutution" ,coureurs));
 		
+		typesDossard = new ArrayList<TypeDossard>();
+		typesDossard.add(new TypeDossard("Elite", "Femmes : -1h20/Homme -1h10"));
+		typesDossard.add(new TypeDossard("Preferentiel", "Femmes : -1h35/Homme -1h25"));
+		typesDossard.add(new TypeDossard("Rouge", "Homme -1h35"));
+		typesDossard.add(new TypeDossard("Jaune", "Entre 1h35 et 1h40"));
+		typesDossard.add(new TypeDossard("Bleu", "Entre 1h40 et 1h50"));
+		typesDossard.add(new TypeDossard("Violet", "Entre 1h50 et 2h"));
+		typesDossard.add(new TypeDossard("Vert", "Entre 2h et 2h10"));
+		typesDossard.add(new TypeDossard("Rose", "Plus de 2h10"));
+		
+		categorie = new ArrayList<Categorie>();
+		categorie.add(new Categorie("Veterans", "V4", 1945, -90000));
+		categorie.add(new Categorie("Veterans", "V3", 1946, 1955));
+		categorie.add(new Categorie("Veterans", "V2", 1956, 1965));
+		categorie.add(new Categorie("Veterans", "V1", 1966, 1975));
+		categorie.add(new Categorie("Seniors", "SE", 1992, 1976));
+		categorie.add(new Categorie("Espoirs", "ES", 1995, 1993));
+		categorie.add(new Categorie("Juniors", "JU", 1997, 1996));
+		categorie.add(new Categorie("Cadets", "CA", 1999, 1998));
+		categorie.add(new Categorie("Minimes", "MI", 2001, 2000));
+		categorie.add(new Categorie("Benjamins", "BE", 2003, 2002));
+		categorie.add(new Categorie("Poussins", "PO", 2005, 2004));
+		categorie.add(new Categorie("Ecole d'Athlétisme", "EA", 90000, 2006));
+		
+		
 		fenetres.get(0).add(new VueMenuUtilisateur(this));
 
 		fenetres.get(0).setVisible(true);
@@ -220,7 +245,51 @@ public class Semi_Marathon{
 	public void ajoutCoureur(Coureur coureurTmp) {
 		coureurs.add(coureurTmp);
 		((VueMenuUtilisateur) ((JFrame) fenetres.get(0)).getContentPane().getComponent(0)).refreshInfos();
-		System.out.println(coureurs.size());
+	}
+
+	public TypeDossard getTypeDossard(String nom) {
+		
+		int i = 0;
+		while(i<typesDossard.size() && typesDossard.get(i).getNom().toUpperCase().compareTo(nom.toUpperCase()) != 0)
+		{ i++; }
+		
+		if(i>= typesDossard.size())
+			i--;
+		
+		if(typesDossard.get(i).getNom().toUpperCase().compareTo(nom.toUpperCase()) == 0)
+		{
+			return typesDossard.get(i);
+		}
+		else
+			return null;
+	}
+	
+	public Categorie getCategorie(int anneeNaissance)
+	{
+		int i = 0;
+		
+		boolean avant;
+		boolean apres;
+		
+		boolean etatRecherche = true;
+		
+		while(i<categorie.size() && etatRecherche)
+		{
+			avant = anneeNaissance <= categorie.get(i).getAnneeDebut();
+			apres = anneeNaissance >= categorie.get(i).getAnneeFin();
+			
+			etatRecherche = !(avant && apres);
+				
+			i++;
+		}
+		i--;
+		
+		if(categorie.get(i).getAnneeDebut() >= anneeNaissance && categorie.get(i).getAnneeFin() <= anneeNaissance)
+		{
+			return categorie.get(i);
+		}
+		
+		return null;
 	}
 	
 }
