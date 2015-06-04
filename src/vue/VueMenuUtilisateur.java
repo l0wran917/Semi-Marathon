@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -35,6 +36,8 @@ public class VueMenuUtilisateur extends JPanel implements ActionListener {
 	private JLabel distance;
 	private JLabel nbCoureur;
 	
+	private JPanel pnlInfos;
+	
 	public static final String INSCRIPTION = "Inscription";
 	public static final String PARCOURS = "Parcours";
 	public static final String RESULTATS = "Resultats";
@@ -56,7 +59,7 @@ public class VueMenuUtilisateur extends JPanel implements ActionListener {
 		titre.setFont(new Font(titre.getFont().getFontName(), titre.getFont().getStyle(), 46));
 		pnlTitre.add(titre, BorderLayout.NORTH);
 		
-		JPanel pnlInfos = new JPanel();
+		pnlInfos = new JPanel();
 		pnlInfos.setLayout(new GridLayout(1, 4));
 
 		lieu = new JLabel("Lieu : " + semiMarathon.getVille(), SwingConstants.CENTER);
@@ -65,21 +68,12 @@ public class VueMenuUtilisateur extends JPanel implements ActionListener {
 		nbCoureur = new JLabel("Coureur : " + semiMarathon.getNbInscrits() + " / " + semiMarathon.getNbMaxCoureur(), 
 				SwingConstants.CENTER);
 		
-		ArrayList<JLabel> lblInfos = new ArrayList<JLabel>();
-		lblInfos.add(lieu);
-		lblInfos.add(date);
-		lblInfos.add(distance);
-		lblInfos.add(nbCoureur);
-		
-		Font font = new Font(lblInfos.get(0).getFont().getFontName(), lblInfos.get(0).getFont().getStyle(), 16);
-		for(JLabel lbl : lblInfos)
-			lbl.setFont(font);
+		Font font = new Font(lieu.getFont().getFontName(), lieu.getFont().getStyle(), 16);
 
-		
-		pnlInfos.add(lblInfos.get(0));
-		pnlInfos.add(lblInfos.get(1));		
-		pnlInfos.add(lblInfos.get(2));
-		pnlInfos.add(lblInfos.get(3));
+		pnlInfos.add(lieu);
+		pnlInfos.add(date);		
+		pnlInfos.add(distance);
+		pnlInfos.add(nbCoureur);
 		
 		pnlTitre.add(pnlInfos, BorderLayout.CENTER);
 		
@@ -162,11 +156,13 @@ public class VueMenuUtilisateur extends JPanel implements ActionListener {
 	
 	public void refreshInfos()
 	{
-		lieu = new JLabel("Lieu : " + semiMarathon.getVille(), SwingConstants.CENTER);
-		date = new JLabel("Date : " + semiMarathon.getDate(), SwingConstants.CENTER);
-		distance = new JLabel("Distance : " + semiMarathon.getDistance() + " Km", SwingConstants.CENTER);
-		nbCoureur = new JLabel("Coureur : " + semiMarathon.getNbInscrits() + " / " + semiMarathon.getNbMaxCoureur(), 
-				SwingConstants.CENTER);
+		System.out.println("Refresh");
+		
+		((JLabel) pnlInfos.getComponent(0)).setText("Lieu : " + semiMarathon.getVille());
+		((JLabel) pnlInfos.getComponent(1)).setText("Date : " + semiMarathon.getDate());
+		((JLabel) pnlInfos.getComponent(2)).setText("Distance : " + semiMarathon.getDistance() + " Km");
+		((JLabel) pnlInfos.getComponent(3)).setText("Coureur : " + semiMarathon.getNbInscrits() + " / " + 
+													semiMarathon.getNbMaxCoureur());
 	}
 	
 	public void actionPerformed(ActionEvent e) {
