@@ -166,7 +166,7 @@ public class Semi_Marathon{
 				fenetreTmp.add(new VueAdmin(this));
 			break;
 			case VueAdmin.RETRAIT_DOSSARD :
-				fenetreTmp.setSize(330, 200);
+				fenetreTmp.setSize(330, 130);
 				fenetreTmp.add(new VueRetraitDossard(this));
 			break;
 			case VueAdmin.MODIF_INFOS :
@@ -290,6 +290,14 @@ public class Semi_Marathon{
 		}
 		
 		return null;
+	}
+
+	public Coureur getCoureur(int num) {
+		if(num > 0 && num < coureurs.size())
+			return coureurs.get(num-1);
+		else
+			return null;
+		
 	}
 	
 }

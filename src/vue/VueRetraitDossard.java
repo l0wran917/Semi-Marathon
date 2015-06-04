@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import modele.Coureur;
 import modele.Semi_Marathon;
 
 @SuppressWarnings("serial")
@@ -60,7 +61,22 @@ public class VueRetraitDossard extends JPanel implements ActionListener{
 		{
 			if(((JButton)e.getSource()).getActionCommand() == "valider")
 			{
-				JOptionPane.showMessageDialog(this, "Ok");
+				Coureur coureurTmp = semiMarathon.getCoureur(Integer.parseInt(numDossard.getText()));
+				if(coureurTmp != null)
+				{
+					if(coureurTmp.getDossardRetire()) // Si deja retiré
+						JOptionPane.showMessageDialog(this, "Dossard déja retiré", "Erreur", JOptionPane.ERROR_MESSAGE);
+					else
+					{
+						coureurTmp.validerRetraitDossard();
+						JOptionPane.showMessageDialog(this, "Retrait enregistré");
+					}	
+				}
+				else
+				{
+					// Coureur n'existe pas
+					JOptionPane.showMessageDialog(this, "Numero de dossard inexistant", "Erreur", JOptionPane.ERROR_MESSAGE);	
+				}
 			}
 		}
 	}

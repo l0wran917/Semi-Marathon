@@ -150,6 +150,14 @@ public class Coureur {
 	
 	public char getSexe()
 	{ return sexe; }
+
+	public void validerRetraitDossard() {
+		this.dossardRetire = true;
+	}
+	
+	public boolean getDossardRetire(){
+		return dossardRetire;
+	}
 	
 }
 
