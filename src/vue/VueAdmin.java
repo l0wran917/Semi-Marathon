@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 
 import modele.Semi_Marathon;
 
+@SuppressWarnings("serial")
 public class VueAdmin extends JPanel implements ActionListener {
 
 	private JButton inscrire;

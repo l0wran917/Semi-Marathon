@@ -24,4 +24,10 @@ public class ChronometragePoint {
 	public Time getHeure()
 	{ return heure; }
 	
+	public PointControle getPointControle()
+	{ return pointControle; }
+	
+	public Coureur getCoureur()
+	{ return coureur; }
+	
 }

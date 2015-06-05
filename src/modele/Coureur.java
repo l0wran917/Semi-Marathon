@@ -4,6 +4,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 
+@SuppressWarnings("unused")
 public class Coureur implements Comparable<Coureur> {
 	
 	public static int NB_COUREURS = 0;
@@ -53,6 +54,7 @@ public class Coureur implements Comparable<Coureur> {
 	private TypeDossard typeDossard;
 	
 	
+	@SuppressWarnings("deprecation")
 	public Coureur(String nom, String prenom, Semi_Marathon semiMarathon){
 		NB_COUREURS++;
 		
@@ -93,6 +95,7 @@ public class Coureur implements Comparable<Coureur> {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	public Coureur(String nom, String prenom, char sexe, Date dateNaiss, String adresse, int cp, 
 			String ville, String pays, String nationalite, long tel, String mail, String club, int license,
 			Ecole_Entreprise institution, Categorie cat)
@@ -151,6 +154,7 @@ public class Coureur implements Comparable<Coureur> {
 	public Date getDateNaiss() 
 	{ return dateNaiss; }
 	
+	@SuppressWarnings("deprecation")
 	public String getDateNaissString() {
 			
 			String jour = Integer.toString(dateNaiss.getDate());
@@ -179,6 +183,7 @@ public class Coureur implements Comparable<Coureur> {
 			return new String("XX");
 	}
 	
+	@SuppressWarnings("deprecation")
 	public String getHeureLigneDepart()
 	{
 		String heure = "";
@@ -192,6 +197,7 @@ public class Coureur implements Comparable<Coureur> {
 	public int getPositionSexe()
 	{ return positionSexe; }
 	
+	@SuppressWarnings("deprecation")
 	public String getHeureLigneArrivee()
 	{
 		String heure = "";

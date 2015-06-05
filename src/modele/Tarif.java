@@ -2,6 +2,7 @@ package modele;
 
 import java.util.Date;
 
+@SuppressWarnings("unused")
 public class Tarif {
 
 	private Date dateDebut;

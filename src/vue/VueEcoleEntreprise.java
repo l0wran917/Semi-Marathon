@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-import modele.Coureur;
 import modele.Ecole_Entreprise;
 import modele.Semi_Marathon;
 

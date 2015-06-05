@@ -17,6 +17,7 @@ import javax.swing.text.MaskFormatter;
 
 import modele.Semi_Marathon;
 
+@SuppressWarnings("serial")
 public class VueModifInfos extends JPanel implements ActionListener{
 
 	private JButton valider;

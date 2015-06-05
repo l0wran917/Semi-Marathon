@@ -5,7 +5,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 import javax.swing.JButton;
@@ -18,6 +17,7 @@ import javax.swing.SwingConstants;
 import modele.Coureur;
 import modele.Semi_Marathon;
 
+@SuppressWarnings("serial")
 public class VueResultats extends JPanel implements ActionListener{
 
 	private JButton btnClassementH;
@@ -266,9 +266,11 @@ public class VueResultats extends JPanel implements ActionListener{
 	
 	public static boolean isNumeric(String str)
 	  {
+		@SuppressWarnings("unused")
+		double d = 0;
 	    try
 	    {
-	      double d = Double.parseDouble(str);
+	      d = Double.parseDouble(str);
 	    }
 	    catch(NumberFormatException nfe)
 	    {

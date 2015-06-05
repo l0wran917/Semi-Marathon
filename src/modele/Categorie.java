@@ -23,6 +23,9 @@ public class Categorie {
 	public String getCode()
 	{ return code; }
 	
+	public String getNom()
+	{ return nom; }
+	
 	public int getAnneeDebut()
 	{ return anneeDeb; }
 	

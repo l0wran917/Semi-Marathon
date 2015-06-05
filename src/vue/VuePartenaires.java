@@ -7,11 +7,11 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+
 import modele.Partenaire;
 import modele.Semi_Marathon;
 
@@ -20,7 +20,6 @@ public class VuePartenaires extends JPanel{
 	
 	private ArrayList<JLabel> lblPartenaires;
 	private JPanel panelVueScroll;
-	private JButton boutonQuitter;
 	
 	public VuePartenaires(ArrayList<Partenaire> partenaires, Semi_Marathon semi_marathon)
 	{
@@ -28,7 +27,6 @@ public class VuePartenaires extends JPanel{
 		//semi_marathon.setSize(300, 600);		
 		lblPartenaires = new ArrayList<JLabel>();
 		panelVueScroll = new JPanel();
-		boutonQuitter = new JButton("Quitter");
 				
 		this.setLayout(new BorderLayout());
 		// nbInscrits ligne + 1 pour les titres et 1 colonne 

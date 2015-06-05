@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 
 import vue.VueAdmin;
 import vue.VueEcoleEntreprise;
-import vue.VueInscriptionPDF;
+import vue.VueInscription;
 import vue.VueInscrits;
 import vue.VueMdpAdmin;
 import vue.VueMenuUtilisateur;
@@ -22,6 +22,7 @@ import vue.VueResultats;
 import vue.VueRetraitDossard;
 
 
+@SuppressWarnings("unused")
 public class Semi_Marathon{
 	
 	private String ville;
@@ -51,6 +52,7 @@ public class Semi_Marathon{
 	
 	private final int NB_HORAIRE_REMISE_DOSSARDS = 3;
 	
+	@SuppressWarnings("deprecation")
 	public Semi_Marathon()
 	{
 		fenetres = new ArrayList<JFrame>();
@@ -77,14 +79,14 @@ public class Semi_Marathon{
 		
 		partenaires = new ArrayList<Partenaire>();	
 		JLabel logo = new JLabel();
-		for(int i=1; i < 4; i++) // Ajout de partenaires pour test
+		for(int i=1; i < 8; i++) // Ajout de partenaires pour test
 			partenaires.add(new Partenaire("Partenaire " + Integer.toString(i), "Mail " + Integer.toString(i), new JLabel(new ImageIcon("assets/logoApple.png"))));
 		
 		coureurs = new ArrayList<Coureur>();
 		
 		rues = new ArrayList<Rue>();
 		for(int i=1; i < 40; i++) // Ajout de rues pour test
-			rues.add(new Rue("Rue du terter", i));
+			rues.add(new Rue("Rue du parcours", i));
 		
 		institutions = new ArrayList<Ecole_Entreprise>();
 		for(int i = 0; i < 40; i ++)
@@ -125,43 +127,26 @@ public class Semi_Marathon{
 		ArrayList<String> noms = new ArrayList<String>();
 		ArrayList<String> prenoms = new ArrayList<String>();
 		
-		prenoms.add("Maxime");	prenoms.add("Jean-Luc");
-		prenoms.add("Hervé");	prenoms.add("Cyril");
-		prenoms.add("Frédéric"); prenoms.add("Patrick");
-		prenoms.add("Emile");	prenoms.add("Raymond");
-		prenoms.add("Patrice");	prenoms.add("Marc");
-		prenoms.add("Yves");	prenoms.add("Paul");
-		prenoms.add("Alexis"); prenoms.add("Benjamin");
-		prenoms.add("Georges");	prenoms.add("Stéphane");
+		prenoms.add("Maxime");	prenoms.add("Jean-Luc"); prenoms.add("Hervé");	prenoms.add("Cyril");
+		prenoms.add("Frédéric"); prenoms.add("Patrick");	prenoms.add("Emile");	prenoms.add("Raymond");
+		prenoms.add("Patrice");	prenoms.add("Marc");	prenoms.add("Yves");	prenoms.add("Paul");
+		prenoms.add("Alexis"); prenoms.add("Benjamin");	prenoms.add("Georges");	prenoms.add("Stéphane");
 		prenoms.add("Antoine");
-		prenoms.add("Louane"); 	prenoms.add("Amandine");
-		prenoms.add("Zoe");	prenoms.add("Gabrielle");
-		prenoms.add("Olivia");	prenoms.add("Lucie");
-		prenoms.add("Ambre");	prenoms.add("Andrea");
-		prenoms.add("Morgane");	prenoms.add("Lise");
-		prenoms.add("Heloise");	prenoms.add("Solene");
-		prenoms.add("Chloe");	prenoms.add("Loane");
-		prenoms.add("Alexia");	prenoms.add("Claire");
+		prenoms.add("Louane"); 	prenoms.add("Amandine");	prenoms.add("Zoe");	prenoms.add("Gabrielle");
+		prenoms.add("Olivia");	prenoms.add("Lucie");	prenoms.add("Ambre");	prenoms.add("Andrea");
+		prenoms.add("Morgane");	prenoms.add("Lise");	prenoms.add("Heloise");	prenoms.add("Solene");
+		prenoms.add("Chloe");	prenoms.add("Loane");	prenoms.add("Alexia");	prenoms.add("Claire");
 		prenoms.add("Pauline");
 		
-		noms.add("Ankhesen");	noms.add("Gunhild");
-		noms.add("Ankhesen");	noms.add("Geertje");
-		noms.add("Senbi"); noms.add("Edith");
-		noms.add("Wosret");	noms.add("Vilhelmine");
-		noms.add("Teti");	noms.add("﻿Alrun");
-		noms.add("Pepi");	noms.add("Deetje");
-		noms.add("Bebi"); noms.add("Svanhilde");
-		noms.add("Piye");	noms.add("Frideborg");
-		noms.add("Euredice");
-		noms.add("Nepherites"); 	noms.add("Vilma");
-		noms.add("Senbi");	noms.add("Ida");
-		noms.add("Tepemkau");	noms.add("Lucie");
-		noms.add("Berenike");	noms.add("Brelok");
-		noms.add("Bet");	noms.add("Ulfaran");
-		noms.add("Hebeny");	noms.add("Muri");
-		noms.add("Netikerty");	noms.add("Dworkok");
-		noms.add("Ankhesen");	noms.add("Dailin");
-		noms.add("Arsinoe");
+		noms.add("Ankhesen");	noms.add("Gunhild"); 	noms.add("Ankhesen");	noms.add("Geertje");
+		noms.add("Senbi"); noms.add("Edith");	noms.add("Wosret");	noms.add("Vilhelmine");
+		noms.add("Teti");	noms.add("﻿Alrun");	noms.add("Pepi");	noms.add("Deetje");
+		noms.add("Bebi"); noms.add("Svanhilde");	noms.add("Piye");	noms.add("Frideborg");
+		noms.add("Euredice");	noms.add("Nepherites"); 	noms.add("Vilma"); 	noms.add("Senbi");	
+		noms.add("Tepemkau");	noms.add("Lucie");	noms.add("Berenike");	noms.add("Brelok");
+		noms.add("Bet");	noms.add("Ulfaran");	noms.add("Hebeny");	noms.add("Muri");
+		noms.add("Netikerty");	noms.add("Dworkok"); 	noms.add("Ankhesen");	noms.add("Dailin");
+		noms.add("Arsinoe");  noms.add("Ida");
 		
 
 		for(int i=1; i < 65; i++) // Ajout de partenaires pour test
@@ -171,11 +156,12 @@ public class Semi_Marathon{
 			
 			coureurs.add(new Coureur(noms.get(numNom), prenoms.get(numPrenom), this));
 		}
+		
+		refreshVueMenuUtilisateur();
 	}
 	
 	public static void main(String args[])
 	{
-		@SuppressWarnings("unused")
 		Semi_Marathon semiMarathon = new Semi_Marathon();
 		semiMarathon.genererCoureurs();
 	}
@@ -204,7 +190,7 @@ public class Semi_Marathon{
 			break;
 			case VueMenuUtilisateur.INSCRIPTION :
 				fenetreTmp.setSize(800, 600);
-				fenetreTmp.add(new VueInscriptionPDF(this));
+				fenetreTmp.add(new VueInscription(this));
 			break;
 			case VueMenuUtilisateur.RESULTATS :
 				fenetreTmp.setSize(700, 480);
@@ -246,7 +232,7 @@ public class Semi_Marathon{
 		
 		if(actionCommand == VueMenuUtilisateur.CLASSEMENT)
 		{
-			fenetreTmp.setSize(1350, 250);
+			fenetreTmp.setSize(1350, 550);
 			fenetreTmp.add(new VueRechercheResultat(classement, this));
 		}
 		else if(actionCommand == VueMenuUtilisateur.CLASSEMENT_SEXE)
@@ -263,15 +249,13 @@ public class Semi_Marathon{
 	public ArrayList<Coureur> getCoureur()
 	{ return coureurs; }
 	
-	public void refresh()
-	{ fenetres.get(0).repaint(); fenetres.get(0).setVisible(true); }
-
 	public ArrayList<Rue> getRues()
 	{ return rues; }
 	
 	public String getVille()
 	{ return ville; }
 
+	@SuppressWarnings("deprecation")
 	public String getDate() {
 		
 		String jour = Integer.toString(date.getDate());
@@ -411,6 +395,7 @@ public class Semi_Marathon{
 		String mois = new String(moisChar);
 		String annee = new String(anneeChar);
 		
+		@SuppressWarnings("deprecation")
 		Date dateReturn = new Date(Integer.parseInt(annee), Integer.parseInt(mois), Integer.parseInt(jour));
 
 		return dateReturn;	

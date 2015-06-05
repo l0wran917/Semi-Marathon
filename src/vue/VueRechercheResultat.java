@@ -4,14 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import modele.Coureur;
@@ -19,6 +17,7 @@ import modele.Semi_Marathon;
 
 
 
+@SuppressWarnings("serial")
 public class VueRechercheResultat extends JPanel {
 	
 	private ArrayList<JLabel> lblInscrits;
